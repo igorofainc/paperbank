@@ -16,7 +16,18 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 
+# Configuring the serving of the papers by django
+from django.conf import settings
+from django.conf.urls.static import static
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^', include('paper.urls')),
 ]
+
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+"""
+Serving static files using the static function will only work in debug mode
+"""

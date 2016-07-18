@@ -1,0 +1,9 @@
+<h1>Welcome to the main Page</h1>
+
+
+{% for paper in papers %}
+
+    
+    <a href="{{paper.paper_file.url}}">{{paper.name}}</a>
+
+{% endfor %}
