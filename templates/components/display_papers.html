@@ -1,0 +1,8 @@
+
+{# This is a template for dealing with the display of papers on the main page #}
+
+{% for paper in papers %}
+    <div class="paper-container">
+        <a href="{{paper.paper_file.url}}">{{paper.name}}</a>
+    </div>
+{% endfor %}
