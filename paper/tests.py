@@ -28,7 +28,6 @@ class PaperTest(TestCase):
         self.assertEqual(Paper.objects.all().count(), 1)
 
 
-    @override_settings(DEBUG=True)
     def test_download(self):
         """
         Testing the download of the papers
