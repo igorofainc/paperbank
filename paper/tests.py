@@ -28,17 +28,3 @@ class PaperTest(TestCase):
         self.assertEqual(Paper.objects.all().count(), 1)
 
 
-    def test_download(self):
-        """
-        Testing the download of the papers
-        
-        Note: This test is only testing the download of the papers on a development machine where
-              debug is set to true
-        """
-        response = self.client.get('')
-        self.assertEqual(response.status_code, 200)
-
-  
-        response = self.client.post(self.paper.paper_file.url, {})
-        self.assertEqual(response.status_code, 200)
-        self.assertEqual(response['Content-Type'], 'application/pdf')
