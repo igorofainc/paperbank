@@ -1,8 +1,33 @@
 
-{# This is a template for dealing with the display of papers on the main page #}
+{# This is a template for dealing with the display of papers  #}
 
-{% for paper in papers %}
+
+{% for paper in papers_page %}
     <div class="paper-container">
         <a href="{{paper.paper_file.url}}">{{paper.name}}</a>
     </div>
 {% endfor %}
+
+{{papers_page.num_pages}}
+
+<div class="pagination">
+    {% if papers_page.has_previous %}
+        <a href="?page={{papers_page.previous_page_number}}">previous</a>
+    {% endif %}
+
+    {%  for page_number in papers_page.paginator.page_range %}
+
+        {% if papers_page.number == page_number %}
+            {% if papers_page.has_next or papers_page.has_previous %}
+                <a href="?page={{page_number}}" class="current">{{page_number}}</a>   
+            {% endif %}
+        {% else %}
+            <a href="?page={{page_number}}">{{page_number}}</a>
+        {% endif %}
+
+    {% endfor %}
+
+    {% if papers_page.has_next %}
+        <a href="?page={{papers_page.next_page_number}}">next</a>
+    {% endif %}
+</div>
