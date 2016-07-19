@@ -2,9 +2,11 @@
 *.swp
 *.swn
 *.swo
+*.swm
 
 TODO.md
 db.sqlite3
 uploads
 analytics_code.html
+/settings.ini
 /static/

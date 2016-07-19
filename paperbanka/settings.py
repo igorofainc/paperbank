@@ -11,19 +11,31 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 """
 
 import os
+from ConfigParser import RawConfigParser
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+DEBUG = True
+
+config = RawConfigParser()
+config.read(os.path.join(BASE_DIR, 'settings.ini'))
+
+ROLLBAR = {
+    'access_token': config.get('keys', 'rollbar'),
+    'environment': 'development' if DEBUG else 'production',
+    'branch': 'master',
+    'root': BASE_DIR
+}
+
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '4sc_9ad*t$3fh@i(z@88887c=lp$z!kb#+f9ao13j&uqt99!#b'
+SECRET_KEY = config.get('keys', 'secret')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -49,6 +61,7 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'rollbar.contrib.django.middleware.RollbarNotifierMiddleware',
 ]
 
 ROOT_URLCONF = 'paperbanka.urls'
