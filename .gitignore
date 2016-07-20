@@ -3,8 +3,11 @@
 *.swn
 *.swo
 *.swm
+*.swl
+
 
 TODO.md
 db.sqlite3
 uploads
+local_settings.py
 /static/
