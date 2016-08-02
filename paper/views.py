@@ -29,6 +29,6 @@ def search(request):
     question = request.GET.get('q', '')
     page = request.GET.get('page', 1)
 
-    results = Paper.objects.filter(name__contains=question)
+    results = Paper.objects.filter(name__icontains=question)
     context_dict['papers_page'] = get_page(results, page)
     return render(request, 'main_page.html', context_dict)

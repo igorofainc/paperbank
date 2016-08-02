@@ -156,7 +156,6 @@ try:
 except ImportError:
     pass
 
-DEBUG = False
 
 # Configuring aws s3 storage of static file
 
