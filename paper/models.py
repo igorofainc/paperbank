@@ -25,7 +25,7 @@ class Paper(models.Model):
     name = models.CharField(max_length=50)
     paper_file = models.FileField(upload_to=uploaded_paper_name)
      
-    subjects = models.ForeignKey(Subject)
+    subject = models.ForeignKey(Subject)
 
     def __str__(self):
         return self.name

@@ -5,7 +5,7 @@ from django.conf import settings
 from pprint import PrettyPrinter
 
 # Create your tests here.
-from paper.models import Paper
+from paper.models import Paper, Subject
 
 class PaperTest(TestCase):
     """
@@ -21,9 +21,11 @@ class PaperTest(TestCase):
         self.test_file = SimpleUploadedFile(name='test_file.pdf',
                                             content='testing file', content_type='application/pdf')
 
-        self.paper = Paper.objects.create(name="test_paper", paper_file=self.test_file)
+        self.subject = Subject.objects.create(name='test_subject')
 
-        self.another_paper = Paper.objects.create(name='another_paper.pdf', paper_file=self.test_file)
+        self.paper = Paper.objects.create(name="test_paper", subject=self.subject, paper_file=self.test_file)
+
+        self.another_paper = Paper.objects.create(name='another_paper.pdf', subject=self.subject, paper_file=self.test_file)
  
  
     def test_models(self):
