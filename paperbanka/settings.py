@@ -157,11 +157,11 @@ except ImportError:
     pass
 
 
-# Configuring aws s3 storage of static file
 
 def get_env_variable(env_var_name):
     """
-    Returns the environment variable if exists"
+    Returns the environment variable if exists
+    else raises a more clear exception
     """
     try:
         return os.environ[env_var_name]
@@ -169,6 +169,7 @@ def get_env_variable(env_var_name):
         raise Exception("Environment variable with key %s not set" % env_var_name)
     
 
+DEBUG = False
 
 if not DEBUG:
     INSTALLED_APPS += ('storages',)
