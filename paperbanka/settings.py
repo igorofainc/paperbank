@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'djangobower',
     'paper',
 ]
 
@@ -139,6 +140,25 @@ MEDIA_URL = '/uploads/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
 
 
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'djangobower.finders.BowerFinder',
+)
+
+## Bower
+
+BOWER_COMPONENTS_ROOT = os.path.join(BASE_DIR, 'bower_components')
+
+BOWER_INSTALLED_APPS = (
+    'bootstrap',
+)
+
+
+
+
+
+
 # Deploying 
 
 import dj_database_url
@@ -169,7 +189,6 @@ def get_env_variable(env_var_name):
         raise Exception("Environment variable with key %s not set" % env_var_name)
     
 
-DEBUG = False
 
 if not DEBUG:
     INSTALLED_APPS += ('storages',)

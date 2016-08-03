@@ -4,6 +4,7 @@ backports.shutil-get-terminal-size==1.0.0
 boto==2.42.0
 decorator==4.0.10
 dj-database-url==0.4.1
+django-bower==5.1.0
 django-rednoise==1.0.5
 django-storages==1.4.1
 gunicorn==19.6.0

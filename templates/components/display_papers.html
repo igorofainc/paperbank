@@ -3,9 +3,9 @@
 
 
 {% for paper in papers_page %}
-    <div class="paper-container">
-        <a href="{{paper.paper_file.url}}">{{paper.name}}</a>
-    </div>
+    <ul class="paper-container">
+        <li><a href="{{paper.paper_file.url}}">{{paper.name}}</a></li>
+    </ul>
 {% endfor %}
 
 {{papers_page.num_pages}}
