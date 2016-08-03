@@ -12,7 +12,10 @@
 
                 {# Sorting papers form #}
                 <form action='{% url 'search'  %}' method='get'  class="search-form">
-                    <input type='text' name='q' placeholder='Search for a paper' class="col-xs-10">
+
+                    <div class="col-xs-10">
+                        <input type='text' name='q' placeholder='Search for a paper' class="search">
+                    </div>
 
                     <div class="col-xs-2 go-btn-container">
                         <input type='submit' value='Go' class="btn btn-default ">

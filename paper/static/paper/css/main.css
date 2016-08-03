@@ -27,3 +27,10 @@ h1.app-name {
   margin-bottom: 70px;
 }
 
+.search {
+  height: 34px;
+  border-radius: 2px;
+  border: 2px solid #e3e3e3;
+  width: 100%;
+}
+
