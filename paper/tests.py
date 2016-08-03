@@ -2,6 +2,7 @@ from django.test import TestCase, Client, override_settings
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.conf import settings
 
+from pprint import PrettyPrinter
 
 # Create your tests here.
 from paper.models import Paper
@@ -23,12 +24,14 @@ class PaperTest(TestCase):
         self.paper = Paper.objects.create(name="test_paper", paper_file=self.test_file)
 
         self.another_paper = Paper.objects.create(name='another_paper.pdf', paper_file=self.test_file)
-  
+ 
+ 
     def test_models(self):
         """
         Testing the upload of models
         """
         self.assertEqual(Paper.objects.all().count(), 2)
+
 
     def test_search(self):
         """ 
@@ -36,7 +39,8 @@ class PaperTest(TestCase):
         """
         response = self.client.get('/search', {'q': 'another'})
         self.assertEqual(response.status_code, 200)
-
-        self.assertEqual(len(response.context['papers']), 1)
+  
+        page = response.context['papers_page']
+        self.assertEqual(len(page.object_list), 1)
 
 
