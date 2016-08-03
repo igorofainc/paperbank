@@ -24,7 +24,8 @@ class Paper(models.Model):
     """
     name = models.CharField(max_length=50)
     paper_file = models.FileField(upload_to=uploaded_paper_name)
-     
+    created_date = models.DateTimeField(auto_now=True) 
+    
     subject = models.ForeignKey(Subject)
 
     def __str__(self):

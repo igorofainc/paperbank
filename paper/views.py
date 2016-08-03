@@ -13,7 +13,7 @@ def main(request):
     where the main user lands
     """
     context_dict = {}
-    papers = Paper.objects.all()
+    papers = Paper.objects.all().order_by('-created_date')
     page = request.GET.get('page', 1)
 
     context_dict['papers_page'] = get_page(papers, page)
@@ -29,6 +29,6 @@ def search(request):
     question = request.GET.get('q', '')
     page = request.GET.get('page', 1)
 
-    results = Paper.objects.filter(name__icontains=question)
+    results = Paper.objects.filter(name__icontains=question).order_by('-created_date')
     context_dict['papers_page'] = get_page(results, page)
     return render(request, 'main_page.html', context_dict)
