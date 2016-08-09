@@ -2,11 +2,11 @@
 {# This is a template for dealing with the display of papers  #}
 
 
-{% for paper in papers_page %}
-    <ul class="paper-container">
-        <li><a href="{{paper.paper_file.url}}">{{paper.name}}</a></li>
-    </ul>
-{% endfor %}
+<ul class="paper-container">
+    {% for paper in papers_page %}
+        <li class="paper"><a href="{{paper.paper_file.url}}">{{paper.name}}</a></li>
+    {% endfor %}
+</ul>
 
 {{papers_page.num_pages}}
 
