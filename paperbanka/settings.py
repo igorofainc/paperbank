@@ -11,17 +11,24 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 """
 
 import os
-from ConfigParser import RawConfigParser
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DEBUG = True
 
-config = RawConfigParser()
-config.read(os.path.join(BASE_DIR, 'settings.ini'))
+
+def get_env_var(env_var):
+   """
+   Returns environment variable or raises a meaningful
+   exception
+   """
+   try: 
+       return os.environ[env_var] 
+   except KeyError:
+       raise Exception("Environment variable %s not set" % env_var)
 
 ROLLBAR = {
-    'access_token': config.get('keys', 'rollbar'),
+    'access_token': get_env_var('paperbank_rollbar_key'),
     'environment': 'development' if DEBUG else 'production',
     'branch': 'master',
     'root': BASE_DIR
@@ -33,7 +40,7 @@ ROLLBAR = {
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config.get('keys', 'secret')
+SECRET_KEY = get_env_var('paperbank_secret_key')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
