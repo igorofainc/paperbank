@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% load static from staticfiles %}
+
+{% block content %}
+
+
+    {# including the landing page css #}
+    {% block extra_css %}
+
+        <link rel="stylesheet" href="static/paper/css/landing_page.css">
+
+    {% endblock %}
+
+
+    <div class="landing-page-wrapper">
+
+        <div class="app-description">
+            <img src="{% static 'paper/img/logo.png' %}" class="landing-app-logo" alt="Paperbank logo">
+            <h1 class="landing-app-name">Paper Bank</h1>
+        <div>
+ 
+
+        <div class="general-app-description">
+         
+            <p class="text-center"> 
+                Paperbank is a web application designed to help students get past
+                papers. 
+            </p>
+
+            <a class="btn btn-paper landing-papers-link" href="{% url 'main_page' %}"> Get the papers</a>
+        </div>
+
+        
+
+       
+        
+    </div>
+
+
+{% endblock %}

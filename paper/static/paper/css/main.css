@@ -1,5 +1,11 @@
 /*
 Styling for the paper bank application
+
+The design is mobile first and responsive and the breakpoints are:
+     @768px for middle sized devices
+     @1170px for wide sized devices
+
+
 */
 
 @font-face {
@@ -25,6 +31,21 @@ body, h1 {
   background-color: #AD1457; 
   border-color: #AD1457;
 }
+
+/* some specific classes */
+.btn-paper {
+  color: white;
+  background: #AD1457;
+  border-color: #AD1457;
+}
+
+.btn-paper:hover {
+  color: white;
+  background: #B9165D;
+  border-color: #B9165D;
+}
+
+
 
 .pagination>li>a,
 .pagination>li>span {
@@ -101,7 +122,8 @@ img.app-logo {
   background-color: #970046;
 }
 
-.go-btn:hover {
+.go-btn:hover,
+.go-btn:focus {
   color: white;
   background-color: #A22760;
 }
@@ -111,6 +133,13 @@ img.app-logo {
   color: white;
   background-color: #770A3D;
 }
+
+.go-btn:active:focus {
+  border: 0;
+  color: white;
+  background: #9A1745;
+}
+
 
 ul.paper-container {
   padding: 0;

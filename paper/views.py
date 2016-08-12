@@ -6,6 +6,16 @@ from .utils import get_page
 
 
 # Create your views here.
+def landing(request):
+    """
+    This renders the first page that the user sees when
+    visiting the application.
+    Just rendering the page.
+    """
+    return render(request, 'landing_page.html')
+
+
+
 
 def main(request):
     """
