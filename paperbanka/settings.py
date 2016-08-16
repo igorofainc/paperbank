@@ -164,8 +164,6 @@ BOWER_INSTALLED_APPS = (
 
 
 
-
-
 # Deploying 
 
 import dj_database_url
@@ -181,29 +179,16 @@ DEBUG = False
 try:
     from .local_settings import *
 except ImportError:
+    print "No local settings, Using production settings"
     pass
-
-
-
-def get_env_variable(env_var_name):
-    """
-    Returns the environment variable if exists
-    else raises a more clear exception
-    """
-    try:
-        return os.environ[env_var_name]
-    except KeyError:
-        raise Exception("Environment variable with key %s not set" % env_var_name)
-    
 
 
 if not DEBUG:
     INSTALLED_APPS += ('storages',)
-
     AWS_QUERYSTRING_AUTH = False
-    AWS_ACCESS_KEY_ID = get_env_variable('AWS_ACCESS_KEY_ID')
-    AWS_SECRET_ACCESS_KEY = get_env_variable('AWS_SECRET_ACCESS_KEY') 
-    AWS_STORAGE_BUCKET_NAME = get_env_variable('AWS_STORAGE_BUCKET_NAME')
+    AWS_ACCESS_KEY_ID = get_env_var('AWS_ACCESS_KEY_ID')
+    AWS_SECRET_ACCESS_KEY = get_env_var('AWS_SECRET_ACCESS_KEY') 
+    AWS_STORAGE_BUCKET_NAME = get_env_var('AWS_STORAGE_BUCKET_NAME')
     MEDIA_URL = 'http://%s.s3.amazonaws.com/uploads/' % AWS_STORAGE_BUCKET_NAME
     STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
     DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
