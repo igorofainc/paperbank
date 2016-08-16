@@ -4,7 +4,7 @@ Main utils for the paper app
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 
-PAPERS_PER_PAGE = 20
+PAPERS_PER_PAGE = 10
 
 def get_page(papers, page):
     """

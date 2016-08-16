@@ -4,10 +4,18 @@
 <head>
     <title>{% block title %} Paperbank {% endblock %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">  
+    <meta name="description" content="Paperbank is a platform designed to help students get past papers of exams.">
    
+    <link rel="shortcut icon" href="{% static 'paper/img/logo.png' %}">
     <link rel="stylesheet" href="{% static 'bootstrap/dist/css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'paper/css/main.css' %}"> 
-      
+
+    <!-- Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    {% block specific_css %}
+
+    {% endblock %}
+
     {% include 'analytics_code.html' %}
 
 </head>
@@ -16,4 +24,9 @@
     {% block content %}
 
     {% endblock %}
+
+    {% block specific_js %}
+
+    {% endblock %}
+
 </body>

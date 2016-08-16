@@ -30,7 +30,7 @@ class PaperTest(TestCase):
  
     def test_models(self):
         """
-        Testing the upload of models
+        Testing the creation of papers
         """
         self.assertEqual(Paper.objects.all().count(), 2)
 

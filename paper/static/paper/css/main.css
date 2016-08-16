@@ -1,36 +1,236 @@
 /*
 Styling for the paper bank application
+
+The design is mobile first and responsive and the breakpoints are:
+     @768px for middle sized devices
+     @1170px for wide sized devices
+
+
 */
+
+@font-face {
+  font-family: zwodrei;
+  src: url('fonts/zwodrei.ttf');
+}
+
 
 body, h1 {
   margin: 0;
   padding: 0;
+  font-family: "Open Sans", sans-serif;
 }
 
 
+/* overriding bootstrap */
+.pagination>.active>a,
+.pagination>.active>a:focus, 
+.pagination>.active>a:hover, 
+.pagination>.active>span, 
+.pagination>.active>span:focus, 
+.pagination>.active>span:hover {
+  background-color: #AD1457; 
+  border-color: #AD1457;
+}
+
+/* some specific classes */
+.btn-paper {
+  color: white;
+  background: #AD1457;
+  border-color: #AD1457;
+}
+
+.btn-paper:hover {
+  color: white;
+  background: #B9165D;
+  border-color: #B9165D;
+}
+
+
+
+.pagination>li>a,
+.pagination>li>span {
+  color: #C73374;
+}
+
+
+
+.pad-zero {
+  padding: 0;
+}
+
+.marg-zero {
+  margin: 0;
+}
+
 .section-container {
-  max-width: 600px;
   margin: auto;
 }
 
 .page-header {
-  margin: 20px 0 20px;
+  margin: 0;
+  background: #f1f1f1;
+  padding: 5px 0;
+  border-bottom: 1px solid #e3e3e3;
+}
+
+
+.app-info {
+  display: table;
+  text-align: center;
+  margin: auto;
 }
 
 h1.app-name {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+  font-family: zwodrei;
+  font-size: 30px;
+  color: #666;
+}
+
+img.app-logo {
+  width: 60px;
 }
 
 .search-form {
-  max-width: 95%;
-  margin-bottom: 70px;
+  max-width: 80%;
+  margin: auto;
+  margin-bottom: 50px;
 }
 
 .search {
-  height: 34px;
+  height: 36px;
+  padding: 0 8px;
   border-radius: 2px;
   border: 2px solid #e3e3e3;
   width: 100%;
 }
 
+
+.search:focus {
+  outline: 0;
+  outline-offset: 0;
+  border-color: #B1BCC3;
+}
+
+.go-btn {
+  border-radius: 0; 
+  position: relative;
+  right: 2px;
+  color: white;
+  font-size: 15px;
+  background-color: #970046;
+}
+
+.go-btn:hover,
+.go-btn:focus {
+  color: white;
+  background-color: #A22760;
+}
+
+.go-btn:active {
+  border: 0;
+  color: white;
+  background-color: #770A3D;
+}
+
+.go-btn:active:focus {
+  border: 0;
+  color: white;
+  background: #9A1745;
+}
+
+
+ul.paper-container {
+  padding: 0;
+  list-style-type: none;
+}
+
+ul.paper-container li.paper a {
+  display: block;
+  padding: 10px 20px;
+  border-bottom: 1px solid #e7e7e7;
+  color: #555;
+}
+
+ul.paper-container li.paper a:hover {
+  background: #f7f7f7;
+  text-decoration: none;
+}
+
+
+/* Handling larger devices */
+@media (min-width: 768px) {
+
+  .app-info {
+    margin: 0; 
+    width: 30%;
+    float: left;
+    padding: 0px 50px;
+  }
+
+  .search-form {
+    width: 70%;
+    float: right;
+    padding: 25px 10px;
+    margin-bottom: 0;
+  }
+ 
+  img.app-logo {
+    width: 58px;
+  }
+  
+  h1.app-name {
+    font-size: 26px;
+  } 
+  .search {
+    height: 40px;
+  }
+
+  .go-btn {
+    height: 40px;
+  }
+
+ 
+}
+
+
+/* For more large devices */
+@media (min-width: 1170px) {
+  
+  img.app-logo {
+    width: 30%;
+    float: left;
+  }
+
+  h1.app-name {
+    width: 70%;
+    float: left;
+    text-align: left;
+    padding-top: 11%;
+  }
+
+  .app-info {
+  }
+
+  .search-form {
+    padding: 13px 10px;
+  }
+
+  ul.paper-container {
+    max-width: 840px;
+    margin: auto;
+    box-shadow: 0 0 63px 25px #f9f9f9;
+  }
+
+  .page-header {
+    z-index: 50;
+    position: relative;
+  }
+
+  .header-section-container {
+    max-width: 1170px;
+    margin: auto;
+  }
+
+}
