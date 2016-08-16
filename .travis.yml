@@ -3,7 +3,7 @@ python:
   - "2.7"
 
 env:
-  - paperbank_rollbar_key: ''
+  - paperbank_rollbar_key: 'rollbar'
   - paperbank_secret_key: 'secret' # Secret key for testing 
 
 install: pip install -r requirements.txt
