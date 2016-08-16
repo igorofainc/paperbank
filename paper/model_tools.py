@@ -6,7 +6,7 @@ the paper models
 
 def uploaded_paper_name(paper, filename):
     """
-    Formats the uploaded file to 
+    Formats the uploaded file name to 
     a new name 
     """
     initial = 'uploads/'

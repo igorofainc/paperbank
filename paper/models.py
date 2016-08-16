@@ -1,6 +1,6 @@
 from __future__ import unicode_literals
-
 from django.db import models
+
 
 from .model_tools import uploaded_paper_name 
 # Create your models here.
