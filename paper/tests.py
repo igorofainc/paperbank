@@ -42,7 +42,7 @@ class PaperTest(TestCase):
 	"""
 	Testing the main page for the paper app
         """
-        response = self.client.get('papers')
+        response = self.client.get('/papers')
 	self.assertEqual(response.status_code, 200)
         print response.context['papers_page'].object_list
 
