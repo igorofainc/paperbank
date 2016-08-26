@@ -1,4 +1,17 @@
 language: python
 python:
   - "2.7"
-install: pip install -r requirements
+
+env:
+  global:
+    - paperbank_rollbar_key: 'rollbar'
+    - paperbank_secret_key: 'secret' # Secret key for testing 
+    - paperbank_debug: 'True'  # Running test in debug, using sqlite as the db... 
+    - AWS_ACCESS_KEY_ID: 'secret'
+    - AWS_SECRET_ACCESS_KEY: 'secret'
+    - AWS_STORAGE_BUCKET_NAME: 'secret'
+
+install: pip install -r requirements.txt
+
+script:
+  - python manage.py test
