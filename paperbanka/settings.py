@@ -164,26 +164,37 @@ BOWER_INSTALLED_APPS = (
 
 
 
-# Deploying 
-
-import dj_database_url
-DATABASES['default'] = dj_database_url.config()
-
-
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-
-ALLOWED_HOSTS = ['*']
-
-DEBUG = False
+"""
+Below we try to get a local settings file, this is to be used during the development version
+if not found then we use production settings, and we start by identifying if the debug
+is set in the environment variable
+"""
 
 try:
     from .local_settings import *
+    print "Found local settings"
 except ImportError:
     print "No local settings, Using production settings"
+    DEBUG = eval(get_env_var('paperbank_debug'))
+    print "DEBUG is set as %s" % DEBUG
     pass
 
 
 if not DEBUG:
+    # Deploying settings 
+
+    import dj_database_url
+    DATABASES['default'] = dj_database_url.config()
+
+
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+    ALLOWED_HOSTS = ['*']
+
+    DEBUG = False
+
+
+
     INSTALLED_APPS += ('storages',)
     AWS_QUERYSTRING_AUTH = False
     AWS_ACCESS_KEY_ID = get_env_var('AWS_ACCESS_KEY_ID')
