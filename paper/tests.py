@@ -44,7 +44,7 @@ class PaperTest(TestCase):
         """
         response = self.client.get('/papers')
 	self.assertEqual(response.status_code, 200)
-        print response.context['papers_page'].object_list
+        self.assertEqual(len(response.context['papers_page'].object_list), 2)
 
     def test_search(self):
         """ 
