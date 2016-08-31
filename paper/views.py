@@ -15,8 +15,6 @@ def landing(request):
     return render(request, 'landing_page.html')
 
 
-
-
 def main(request):
     """
     This is the main page 

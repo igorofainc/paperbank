@@ -33,7 +33,18 @@ class PaperTest(TestCase):
         Testing the creation of papers
         """
         self.assertEqual(Paper.objects.all().count(), 2)
+	print Paper.objects.first()
+	print Paper.objects.first().subject
 
+
+
+    def test_main_page(self):
+	"""
+	Testing the main page for the paper app
+        """
+        response = self.client.get('/papers')
+	self.assertEqual(response.status_code, 200)
+        print response.context['papers_page'].object_list
 
     def test_search(self):
         """ 

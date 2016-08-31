@@ -2,6 +2,7 @@ Django==1.9.7
 argparse==1.2.1
 backports.shutil-get-terminal-size==1.0.0
 boto==2.42.0
+coverage==4.2
 decorator==4.0.10
 dj-database-url==0.4.1
 django-bower==5.1.0
@@ -22,3 +23,4 @@ traitlets==4.2.2
 whitenoise==1.0.6
 wsgiref==0.1.2
 psycopg2
+python-coveralls

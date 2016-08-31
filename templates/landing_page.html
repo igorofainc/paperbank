@@ -15,20 +15,43 @@
 
     <div class="landing-page-wrapper">
 
-        <div class="app-description">
-            <img src="{% static 'paper/img/logo.png' %}" class="landing-app-logo" alt="Paperbank logo">
-            <h1 class="landing-app-name">Paper Bank</h1>
-        <div>
+
+        <div class="container">
+            <div class="row">
+                <div class="app-description text-center">
+                    <img src="{% static 'paper/img/logo.png' %}" 
+                                            class="landing-app-logo" alt="Paperbank logo">
+                    <h1 class="landing-app-name">Paper Bank</h1>
+                <div>
+            </div>
+        </div>
  
 
-        <div class="general-app-description">
-         
-            <p class="text-center"> 
-                Paperbank is a web application designed to help students get past
-                papers. 
-            </p>
+        <div class="container">
+            <div class="row">   
+                <div class="general-app-description">
 
-            <a class="btn btn-paper landing-papers-link" href="{% url 'main_page' %}"> Get the papers</a>
+
+                    <div class="text-description col-md-7">
+                        <h2 class="landing-header landing-text">Revisions made fun and easier than ever!</h2>
+                        <p class="landing-text"> 
+                            Paperbank is a Rwanda-based web platform holding a collection of past papers, from national
+                            examinations to class tests and assignments for all academic levels to ease your revision 
+                            journey, have fun!.
+                        </p>
+
+                        <a class="btn btn-paper landing-papers-link "
+                         href="{% url 'main_page' %}">Get the papers</a>    
+                    </div>
+
+
+                    <div class="img-description col-md-6">
+                        
+                    </div>
+
+
+                </div>
+            </div>
         </div>
 
         

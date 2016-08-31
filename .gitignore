@@ -6,6 +6,9 @@
 *.swl
 *.swk
 
+# Coverage 
+.coverage
+htmlcov/
 
 TODO.md
 db.sqlite3
