@@ -18,18 +18,9 @@
                 </div>
 
                 {# Sorting papers form #}
-                <form action='{% url 'search'  %}' method='get'  class="search-form">
-
-                    <div class="col-xs-10 pad-zero">
-                        <input type='text' name='q' placeholder='Search for a paper' class="search">
-                    </div>
-
-                    <div class="col-xs-2 go-btn-container pad-zero">
-                        <button type='submit' class="btn btn-default go-btn glyphicon glyphicon-search">
-                        </button>
-                    </div>
-
-                </form>
+                <div class="main-page-search">
+                    {% include 'components/search.html' %}
+                </div>
 
                 <span class="clearfix"></span>
             </div>

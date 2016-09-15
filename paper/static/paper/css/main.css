@@ -45,14 +45,24 @@ body, h1 {
   border-color: #B9165D;
 }
 
-
+.page-item.active 
+.page-link,
+.page-item.active 
+.page-link:focus,
+.page-item.active
+.page-link:hover {
+  background-color: #C73374;
+  border-color: #C73374;
+}
 
 .pagination>li>a,
 .pagination>li>span {
   color: #C73374;
 }
 
-
+.text-center {
+  text-align: center;
+}
 
 .pad-zero {
   padding: 0;
@@ -93,8 +103,9 @@ img.app-logo {
 }
 
 .search-form {
-  max-width: 80%;
+
   margin: auto;
+  position: relative;  /* Sett children items position relative to this */
   margin-bottom: 50px;
 }
 
@@ -106,11 +117,23 @@ img.app-logo {
   width: 100%;
 }
 
+.main-page-search .search-form {
+  max-width: 80%;
+  margin: auto;
+  margin-bottom: 50px;
+}
+
 
 .search:focus {
   outline: 0;
   outline-offset: 0;
   border-color: #B1BCC3;
+}
+
+.go-btn-container {
+  position: absolute;
+  top: -1px;
+  right: -2px ;
 }
 
 .go-btn {
@@ -172,10 +195,15 @@ ul.paper-container li.paper a:hover {
   .search-form {
     width: 70%;
     float: right;
-    padding: 25px 10px;
     margin-bottom: 0;
   }
- 
+
+  .main-page-search .search-form {
+    margin-top: 15px;
+    margin-bottom: 27px;
+  }
+
+
   img.app-logo {
     width: 58px;
   }
@@ -213,9 +241,11 @@ ul.paper-container li.paper a:hover {
   .app-info {
   }
 
-  .search-form {
-    padding: 13px 10px;
+  .main-page-search .search-form {
+    float: left;
+    max-width: 56%;
   }
+
 
   ul.paper-container {
     max-width: 840px;

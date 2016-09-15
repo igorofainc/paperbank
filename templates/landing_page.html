@@ -16,6 +16,7 @@
     <div class="landing-page-wrapper">
 
 
+        {# App Description Logo + app name #}
         <div class="container">
             <div class="row">
                 <div class="app-description text-center">
@@ -26,13 +27,27 @@
             </div>
         </div>
  
+        {# The search for the landing page #}
+        <div class="container">
+            <div class="row landing-page-search">
+               {% include 'components/search.html' %}
+            </div>
+        </div>
 
+
+
+        {# App Extra Description plus app drawing #}
         <div class="container">
             <div class="row">   
                 <div class="general-app-description">
 
 
-                    <div class="text-description col-md-7">
+                
+                    <div class="img-description col-sm-5 push-md-7">
+                        <img class="img-fluid" src="{% static 'paper/img/paper_drawing.png' %}">
+                    </div> 
+
+                    <div class="text-description col-sm-7 pull-md-5">
                         <h2 class="landing-header landing-text">Revisions made fun and easier than ever!</h2>
                         <p class="landing-text"> 
                             Paperbank is a Rwanda-based web platform holding a collection of past papers, from national
@@ -44,10 +59,6 @@
                          href="{% url 'main_page' %}">Get the papers</a>    
                     </div>
 
-
-                    <div class="img-description col-md-6">
-                        
-                    </div>
 
 
                 </div>

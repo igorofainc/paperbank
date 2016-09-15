@@ -158,7 +158,8 @@ STATICFILES_FINDERS = (
 BOWER_COMPONENTS_ROOT = os.path.join(BASE_DIR, 'bower_components')
 
 BOWER_INSTALLED_APPS = (
-    'bootstrap',
+    'bootstrap#4.0.0-alpha.3',
+    'font-awesome',
 )
 
 
