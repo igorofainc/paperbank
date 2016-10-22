@@ -82,17 +82,31 @@ class Migration(migrations.Migration):
         migrations.RunPython(subject_to_tag, reverse_subject_to_tag),
 
 
+
+        migrations.RunPython(print_help_info, reverse_print_help_info),
+        migrations.RunPython(print_help_info, reverse_print_help_info),
         migrations.RunPython(print_help_info, reverse_print_help_info),
 
 
-        migrations.DeleteModel(
-            name='Subject',
-        ),
+        migrations.RunPython(print_help_info, reverse_print_help_info),
 
+        migrations.AlterField(
+            model_name='paper', 
+            name='subject',
+            field=models.ForeignKey(to='paper.Subject', null=True),
+        ),
 
         migrations.RemoveField(
             model_name='paper',
             name='subject',
         ),
+
+	      
+        migrations.RunPython(print_help_info, reverse_print_help_info),
+        
+        migrations.DeleteModel(
+            name='Subject',
+        ),
+
 
     ]

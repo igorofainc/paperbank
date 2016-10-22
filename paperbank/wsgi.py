@@ -12,7 +12,7 @@ import os
 from django.core.wsgi import get_wsgi_application
 from rednoise import DjangoRedNoise
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "paperbanka.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "paperbank.settings")
 
 application = get_wsgi_application()
 application = DjangoRedNoise(application)

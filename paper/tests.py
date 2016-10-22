@@ -4,8 +4,9 @@ from django.conf import settings
 
 from pprint import PrettyPrinter
 
-# Create your tests here.
+# Paper imports
 from paper.models import Paper, Subject
+from paper.utils import get_page, get_main_page_context_dict
 
 class PaperTest(TestCase):
     """
@@ -55,5 +56,6 @@ class PaperTest(TestCase):
   
         page = response.context['papers_page']
         self.assertEqual(len(page.object_list), 1)
+
 
 

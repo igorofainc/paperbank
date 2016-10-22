@@ -9,7 +9,7 @@
         <div class="page-header">
 
             <div class="header-section-container">
-                 
+
                 <div class="app-info marg-zero">
 
                     <img src='{% static 'paper/img/logo.png' %}' alt='Paperbank Logo' class="app-logo" >
@@ -36,6 +36,11 @@
                 {% include 'components/display_papers.html' %}
             </div>
         </div>
+
+        <div class="footer">
+          <p class="text-xs-center small text-muted">Our library now contains {{number_of_papers}} papers, share with us papers and ideas, and help us to help you ;).</p>
+        </div>
+
 
     </div>
 

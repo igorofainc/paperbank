@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 from .models import Paper
-from .utils import get_page
+from .utils import get_page, get_main_page_context_dict
 
 
 # Create your views here.
@@ -25,6 +25,7 @@ def main(request):
     page = request.GET.get('page', 1)
 
     context_dict['papers_page'] = get_page(papers, page)
+    context_dict.update(get_main_page_context_dict())
     return render(request, 'main_page.html', context_dict)
 
 
@@ -39,4 +40,5 @@ def search(request):
 
     results = Paper.objects.filter(name__icontains=question).order_by('-created_date')
     context_dict['papers_page'] = get_page(results, page)
+    context_dict.update(get_main_page_context_dict())
     return render(request, 'main_page.html', context_dict)
