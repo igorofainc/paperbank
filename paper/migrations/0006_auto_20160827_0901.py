@@ -21,6 +21,9 @@ def subject_to_tag(apps, schema_editor):
                 paper.tags.create(name=paper.subject.name)
                 paper.save()
         except IntegrityError:
+            tag = Tag.objects.filter(name=paper.subjects.name)
+            paper.tags.add(tag)
+            paper.save()
             print "Tag already exists"
 
 
@@ -42,6 +45,9 @@ def reverse_subject_to_tag(apps, schema_editor):
                 paper.subject = Subject.objects.create(name=tag.name)
                 paper.save()
         except IntergrityError:
+            subject = Subject.objects.filter(name=tag.name)
+            paper.subject = subject
+            paper.save()
             print "Subject already exists"
 
 
