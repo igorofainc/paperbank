@@ -171,7 +171,6 @@ ul.paper-container {
 ul.paper-container li.paper a.paper-name {
   display: block;
   padding: 10px 20px;
-  border-bottom: 1px solid #e7e7e7;
   color: #555;
 }
 
@@ -180,8 +179,20 @@ ul.paper-container li.paper a.paper-name:hover {
   text-decoration: none;
 }
 
+ul.paper-container li.paper.row {
+  margin-right: 0;
+  margin-left: 0;
+  border-bottom: 1px solid #e7e7e7;
+
+}
+
+span.paper-tags-container {
+  text-align: right;
+  line-height: 1.1;
+}
+
 a.paper-tag.small {
-  padding: 13px 2px;
+  padding: 12.5px 2px;
 }
 
 
