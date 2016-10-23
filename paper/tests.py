@@ -5,7 +5,7 @@ from django.conf import settings
 from pprint import PrettyPrinter
 
 # Paper imports
-from paper.models import Paper, Subject
+from paper.models import Paper
 from paper.utils import get_page, get_main_page_context_dict
 
 class PaperTest(TestCase):
