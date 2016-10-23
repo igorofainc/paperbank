@@ -1,11 +1,11 @@
 from django.test import TestCase, Client, override_settings
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.conf import settings
+from django.core.urlresolvers import reverse
 
-from pprint import PrettyPrinter
 
 # Paper imports
-from paper.models import Paper
+from paper.models import Paper, Tag
 from paper.utils import get_page, get_main_page_context_dict
 
 class PaperTest(TestCase):
@@ -22,20 +22,20 @@ class PaperTest(TestCase):
         self.test_file = SimpleUploadedFile(name='test_file.pdf',
                                             content='testing file', content_type='application/pdf')
 
-        self.subject = Subject.objects.create(name='test_subject')
+        self.paper = Paper.objects.create(name="test_paper", paper_file=self.test_file)
+        self.test_tag_one = self.paper.tags.create(name='test')
+        self.test_tag_two = self.paper.tags.create(name='another_one')
+        
 
-        self.paper = Paper.objects.create(name="test_paper", subject=self.subject, paper_file=self.test_file)
-
-        self.another_paper = Paper.objects.create(name='another_paper.pdf', subject=self.subject, paper_file=self.test_file)
- 
+        self.another_paper = Paper.objects.create(name='another_paper.pdf',  paper_file=self.test_file)
+        self.another_paper.tags.add(self.test_tag_one)
+        
  
     def test_models(self):
         """
         Testing the creation of papers
         """
         self.assertEqual(Paper.objects.all().count(), 2)
-	print Paper.objects.first()
-	print Paper.objects.first().subject
 
 
 
@@ -58,4 +58,18 @@ class PaperTest(TestCase):
         self.assertEqual(len(page.object_list), 1)
 
 
+    def test_tag_filter(self):
+        """
+        Testing the filtering of papers with 
+        tags 
+        """
+        # Testing with an invalid tag, response should be a redirect to the main page
+        response = self.client.get(reverse('filter_by_tag', args=['none']))
+        self.assertEqual(response.status_code, 302)
+
+        # Testing with a valid tag
+        response = self.client.get(reverse('filter_by_tag', args=[self.test_tag_one.name]))
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(len(response.context['papers_page'].object_list), 2)
+ 
 
