@@ -30,7 +30,9 @@ class PaperTest(TestCase):
         self.another_paper = Paper.objects.create(name='another_paper.pdf',  paper_file=self.test_file)
         self.another_paper.tags.add(self.test_tag_one)
         
- 
+        print self.paper
+        print self.test_tag_one
+
     def test_models(self):
         """
         Testing the creation of papers
@@ -38,6 +40,12 @@ class PaperTest(TestCase):
         self.assertEqual(Paper.objects.all().count(), 2)
 
 
+    def test_landing_page(self):
+        """
+        Testing the rendering of the landing page
+        """
+        response = self.client.get('')
+        self.assertEqual(response.status_code, 200)
 
     def test_main_page(self):
 	"""
@@ -71,5 +79,16 @@ class PaperTest(TestCase):
         response = self.client.get(reverse('filter_by_tag', args=[self.test_tag_one.name]))
         self.assertEqual(response.status_code, 200)
         self.assertEqual(len(response.context['papers_page'].object_list), 2)
+
+
+    def test_utils(self):
+        """
+        Testing the paper utils
+        """
+        # Testing the get_page function (just executing if no unexpected exceptions)
+        papers = Paper.objects.all()
+        get_page(papers, 1)
+        get_page(papers, 25)
+        get_page(papers, 's')
  
 
