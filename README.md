@@ -1,23 +1,15 @@
 ## Paperbank 
 
-This is a platform that helps students to get examinations easily.
-It is created so that students will have a way of downloading pdf of the papers
-that they will use in their revisions.
+Paperbank is a web application library designed to help store, manage and share pdfs documents.
+The platform can be deployed as a web application online, or It can be deployed as a local
+library within a local network.
 
+It is written in python using the Django web framework(more info: www.djangoproject.com),
 
+## Done
+* Ability for visitors to get pdf documents
 
-## Goal
+## To be done
+* User managements  and permissions.
 
-* The goal of the platform is to deliver papers to students.
-  it will be found at www.paperbank.net
-
-
-## Technical
-
-* The platform is currently using django, which is a python based framework for creating web
-  applications. More information visit www.djangoproject.com
-
-
-* The platform is using rednoise to serve the uploaded papers to the visitors,
-  rednoise is a whitenoise extension which is a library that helps serving static files
-  whith python. more info checkout the githubpage of whitenoise and rednose
+A working version of the library. can be found at www.paperbank.net
