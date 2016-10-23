@@ -21,7 +21,7 @@ def subject_to_tag(apps, schema_editor):
                 paper.tags.create(name=paper.subject.name)
                 paper.save()
         except IntegrityError:
-            tag = Tag.objects.filter(name=paper.subjects.name)
+            tag = Tag.objects.filter(name=paper.subject.name)
             paper.tags.add(tag)
             paper.save()
             print "Tag already exists"
