@@ -5,9 +5,16 @@ Styles for the Landing page
   max-width: 890px;
 }
 
+.app-description {
+  margin-top: 7%;
+  margin-bottom: 25px;
+  text-align: center;
+}
 
 .landing-app-logo {
-  width: 82px;
+  display: block;
+  width: 72px;
+  margin: auto;
 }
 
 .landing-app-name {
@@ -16,6 +23,7 @@ Styles for the Landing page
   top: 10px;
   font-family: zwodrei;
   color: #555;
+  font-size: 2em;
 }
 
 .landing-app-name,
@@ -24,10 +32,51 @@ Styles for the Landing page
 }
 
 h2.landing-header {
-  font-size: 1.7em;
+  font-size: 1.4em;
 }
 
 p.landing-text,
 a.btn.btn-paper {
-  font-size: 1.1em;
+  font-size: 0.9em;
+}
+
+.general-app-description .app-drawing {
+  width: 80%;
+  margin: auto;
+  padding: 25px 20px;
+}
+
+.landing-page-wrapper  .general-app-description {
+  font-family: "Lato", sans-serif;
+}
+
+
+.landing-page-search {
+  margin: auto;
+  max-width: 90%;
+}
+
+.landing-page-search .search-form { /* This will overwrite the styling in the main file because it is this file is include last*/
+  float: none;
+  width: 100%;
+}
+
+@media(min-width: 544px) {
+
+  .general-app-description .app-drawing {
+    width: 100%;
+    padding: 25px 0;
+  }
+
+  .landing-page-search {
+    margin-bottom: 50px;
+  }
+
+}
+
+@media(min-width: 760px) {
+  .general-app-description .app-drawing {
+    width: 75%;
+    padding: 0;
+  }
 }

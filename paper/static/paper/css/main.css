@@ -23,12 +23,12 @@ body, h1 {
 
 /* overriding bootstrap */
 .pagination>.active>a,
-.pagination>.active>a:focus, 
-.pagination>.active>a:hover, 
-.pagination>.active>span, 
-.pagination>.active>span:focus, 
+.pagination>.active>a:focus,
+.pagination>.active>a:hover,
+.pagination>.active>span,
+.pagination>.active>span:focus,
 .pagination>.active>span:hover {
-  background-color: #AD1457; 
+  background-color: #AD1457;
   border-color: #AD1457;
 }
 
@@ -45,14 +45,24 @@ body, h1 {
   border-color: #B9165D;
 }
 
-
+.page-item.active
+.page-link,
+.page-item.active
+.page-link:focus,
+.page-item.active
+.page-link:hover {
+  background-color: #C73374;
+  border-color: #C73374;
+}
 
 .pagination>li>a,
 .pagination>li>span {
   color: #C73374;
 }
 
-
+.text-center {
+  text-align: center;
+}
 
 .pad-zero {
   padding: 0;
@@ -93,9 +103,8 @@ img.app-logo {
 }
 
 .search-form {
-  max-width: 80%;
   margin: auto;
-  margin-bottom: 50px;
+  position: relative;  /* Set children items position relative to this */
 }
 
 .search {
@@ -106,6 +115,15 @@ img.app-logo {
   width: 100%;
 }
 
+.main-page-search {
+  margin-bottom: 20px;
+}
+
+.main-page-search .search-form {
+  max-width: 80%;
+  margin: auto;
+}
+
 
 .search:focus {
   outline: 0;
@@ -113,12 +131,16 @@ img.app-logo {
   border-color: #B1BCC3;
 }
 
+.go-btn-container {
+  position: absolute;
+  top: 1.5px;
+  right: 0;
+}
+
 .go-btn {
-  border-radius: 0; 
+  border-radius: 0;
   position: relative;
-  right: 2px;
   color: white;
-  font-size: 15px;
   background-color: #970046;
 }
 
@@ -146,24 +168,29 @@ ul.paper-container {
   list-style-type: none;
 }
 
-ul.paper-container li.paper a {
+ul.paper-container li.paper a.paper-name {
   display: block;
   padding: 10px 20px;
   border-bottom: 1px solid #e7e7e7;
   color: #555;
 }
 
-ul.paper-container li.paper a:hover {
+ul.paper-container li.paper a.paper-name:hover {
   background: #f7f7f7;
   text-decoration: none;
 }
+
+a.paper-tag.small {
+  padding: 13px 2px;
+}
+
 
 
 /* Handling larger devices */
 @media (min-width: 768px) {
 
   .app-info {
-    margin: 0; 
+    margin: 0;
     width: 30%;
     float: left;
     padding: 0px 50px;
@@ -172,17 +199,26 @@ ul.paper-container li.paper a:hover {
   .search-form {
     width: 70%;
     float: right;
-    padding: 25px 10px;
     margin-bottom: 0;
   }
- 
+
+  .main-page-search {
+    margin-bottom: 0;
+  }
+
+  .main-page-search .search-form {
+    margin-top: 15px;
+    margin-bottom: 27px;
+  }
+
+
   img.app-logo {
     width: 58px;
   }
-  
+
   h1.app-name {
     font-size: 26px;
-  } 
+  }
   .search {
     height: 40px;
   }
@@ -191,13 +227,17 @@ ul.paper-container li.paper a:hover {
     height: 40px;
   }
 
- 
+  .go-btn-container {
+    top: 0;
+  }
+
+
 }
 
 
 /* For more large devices */
 @media (min-width: 1170px) {
-  
+
   img.app-logo {
     width: 30%;
     float: left;
@@ -213,9 +253,11 @@ ul.paper-container li.paper a:hover {
   .app-info {
   }
 
-  .search-form {
-    padding: 13px 10px;
+  .main-page-search .search-form {
+    float: left;
+    max-width: 56%;
   }
+
 
   ul.paper-container {
     max-width: 840px;

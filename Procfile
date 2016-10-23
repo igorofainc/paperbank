@@ -1,1 +1,1 @@
-web: gunicorn paperbanka.wsgi 
+web: gunicorn paperbank.wsgi 

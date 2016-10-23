@@ -12,6 +12,4 @@ It is written in python using the Django web framework(more info: www.djangoproj
 ## To be done
 * User managements  and permissions.
 
-
-
 A working version of the library. can be found at www.paperbank.net

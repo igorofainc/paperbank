@@ -3,12 +3,19 @@
 
 
 <ul class="paper-container">
-    {% for paper in papers_page %}
-        <li class="paper"><a href="{{paper.paper_file.url}}">{{paper.name}}</a></li>
+      {% for paper in papers_page %}
+        <li class="paper">
+          <span class="paper-tags-container pull-right">
+              {% for tag in paper.tags.all %}
+                  <a href="{% url 'filter_by_tag' tag.name %}" class="paper-tag pull-right small">#{{tag.name}}</a>
+              {% endfor %}
+          </span>
+
+          <a href="{{paper.paper_file.url}}" class="paper-name">{{paper.name}}</a>
+        </li>
     {% endfor %}
 </ul>
 
-{{papers_page.num_pages}}
 
 <div class="text-center">
     <div class="pagination">

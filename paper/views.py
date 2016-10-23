@@ -1,8 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from django.core.urlresolvers import reverse
 
-from .models import Paper
-from .utils import get_page
+from .models import Paper, Tag
+from .utils import get_page, get_main_page_context_dict
 
 
 # Create your views here.
@@ -25,6 +26,7 @@ def main(request):
     page = request.GET.get('page', 1)
 
     context_dict['papers_page'] = get_page(papers, page)
+    context_dict.update(get_main_page_context_dict())
     return render(request, 'main_page.html', context_dict)
 
 
@@ -39,4 +41,22 @@ def search(request):
 
     results = Paper.objects.filter(name__icontains=question).order_by('-created_date')
     context_dict['papers_page'] = get_page(results, page)
+    context_dict.update(get_main_page_context_dict())
+    return render(request, 'main_page.html', context_dict)
+
+def filter_by_tag(request, tag_name):
+    """
+    This filters through the papers basing
+    on the given tag 
+    """
+    context_dict = {}
+    tag = Tag.objects.filter(name=tag_name)
+    page = request.GET.get('page', 1)
+
+    if not tag:
+        return redirect(reverse('main_page'))
+
+    results = Paper.objects.filter(tags=tag).order_by('-created_date')
+    context_dict['papers_page'] = get_page(results, page)
+    context_dict.update(get_main_page_context_dict())
     return render(request, 'main_page.html', context_dict)

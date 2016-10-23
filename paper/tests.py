@@ -1,11 +1,12 @@
 from django.test import TestCase, Client, override_settings
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.conf import settings
+from django.core.urlresolvers import reverse
 
-from pprint import PrettyPrinter
 
-# Create your tests here.
-from paper.models import Paper, Subject
+# Paper imports
+from paper.models import Paper, Tag
+from paper.utils import get_page, get_main_page_context_dict
 
 class PaperTest(TestCase):
     """
@@ -21,22 +22,30 @@ class PaperTest(TestCase):
         self.test_file = SimpleUploadedFile(name='test_file.pdf',
                                             content='testing file', content_type='application/pdf')
 
-        self.subject = Subject.objects.create(name='test_subject')
+        self.paper = Paper.objects.create(name="test_paper", paper_file=self.test_file)
+        self.test_tag_one = self.paper.tags.create(name='test')
+        self.test_tag_two = self.paper.tags.create(name='another_one')
+        
 
-        self.paper = Paper.objects.create(name="test_paper", subject=self.subject, paper_file=self.test_file)
+        self.another_paper = Paper.objects.create(name='another_paper.pdf',  paper_file=self.test_file)
+        self.another_paper.tags.add(self.test_tag_one)
+        
+        print self.paper
+        print self.test_tag_one
 
-        self.another_paper = Paper.objects.create(name='another_paper.pdf', subject=self.subject, paper_file=self.test_file)
- 
- 
     def test_models(self):
         """
         Testing the creation of papers
         """
         self.assertEqual(Paper.objects.all().count(), 2)
-	print Paper.objects.first()
-	print Paper.objects.first().subject
 
 
+    def test_landing_page(self):
+        """
+        Testing the rendering of the landing page
+        """
+        response = self.client.get('')
+        self.assertEqual(response.status_code, 200)
 
     def test_main_page(self):
 	"""
@@ -44,7 +53,7 @@ class PaperTest(TestCase):
         """
         response = self.client.get('/papers')
 	self.assertEqual(response.status_code, 200)
-        print response.context['papers_page'].object_list
+        self.assertEqual(len(response.context['papers_page'].object_list), 2)
 
     def test_search(self):
         """ 
@@ -56,4 +65,30 @@ class PaperTest(TestCase):
         page = response.context['papers_page']
         self.assertEqual(len(page.object_list), 1)
 
+
+    def test_tag_filter(self):
+        """
+        Testing the filtering of papers with 
+        tags 
+        """
+        # Testing with an invalid tag, response should be a redirect to the main page
+        response = self.client.get(reverse('filter_by_tag', args=['none']))
+        self.assertEqual(response.status_code, 302)
+
+        # Testing with a valid tag
+        response = self.client.get(reverse('filter_by_tag', args=[self.test_tag_one.name]))
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(len(response.context['papers_page'].object_list), 2)
+
+
+    def test_utils(self):
+        """
+        Testing the paper utils
+        """
+        # Testing the get_page function (just executing if no unexpected exceptions)
+        papers = Paper.objects.all()
+        get_page(papers, 1)
+        get_page(papers, 25)
+        get_page(papers, 's')
+ 
 
