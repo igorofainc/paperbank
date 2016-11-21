@@ -40,5 +40,5 @@ class RegistrationTestCase(TestCase):
         response = self.client.post(reverse('register'), data)
         self.assertEqual(response.status_code, 200)
         self.assertEqual(Registrant.objects.all().count(), 1)
-
+        print Registrant.objects.first()
       
