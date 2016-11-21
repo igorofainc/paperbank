@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% comment %}
+    Page to register a registrant,
+    this case student who wants to study abroad.
+{% endcomment %}
+
+
+{% load bootstrap %}
+{% block content %}
+
+    <div class="container">
+        <form class="" method="post" role="form">
+            {% csrf_token %}
+            {{form|bootstrap}}
+            <div class="form-group">
+                <input type="submit" value="Register" class="btn btn-paper">
+            </div>
+        </form>
+    </div>
+
+{% endblock %}
