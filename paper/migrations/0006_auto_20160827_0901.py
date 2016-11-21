@@ -84,12 +84,6 @@ class Migration(migrations.Migration):
 
 
 
-        migrations.RunPython(print_help_info, reverse_print_help_info),
-        migrations.RunPython(print_help_info, reverse_print_help_info),
-        migrations.RunPython(print_help_info, reverse_print_help_info),
-
-
-        migrations.RunPython(print_help_info, reverse_print_help_info),
 
         migrations.AlterField(
             model_name='paper', 
@@ -103,7 +97,6 @@ class Migration(migrations.Migration):
         ),
 
 	      
-        migrations.RunPython(print_help_info, reverse_print_help_info),
         
         migrations.DeleteModel(
             name='Subject',
