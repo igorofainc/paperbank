@@ -1,6 +1,5 @@
-from django.test import TestCase, Client, override_settings
+from django.test import TestCase, Client
 from django.core.files.uploadedfile import SimpleUploadedFile
-from django.conf import settings
 from django.core.urlresolvers import reverse
 
 
@@ -85,10 +84,14 @@ class PaperTest(TestCase):
         """
         Testing the paper utils
         """
-        # Testing the get_page function (just executing if no unexpected exceptions)
+        # Testing the get_page function checking if no exceptions thrown
         papers = Paper.objects.all()
-        get_page(papers, 1)
-        get_page(papers, 25)
-        get_page(papers, 's')
+        get_page(papers, 1) # Running with a valid integer
+        get_page(papers, 25) # Running with an empty page
+        get_page(papers, 's') # Running with an invalid page
+
+        # Test get main page context dict
+        context_dict = get_main_page_context_dict() 
+        self.assertEqual(context_dict['number_of_papers'], 2)
  
 
