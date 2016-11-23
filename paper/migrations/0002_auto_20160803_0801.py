@@ -23,6 +23,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='paper',
             name='subjects',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='paper.Subject'),
+            field=models.ForeignKey(null=True, default=1, on_delete=django.db.models.deletion.CASCADE, to='paper.Subject'),
         ),
     ]
