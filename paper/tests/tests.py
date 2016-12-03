@@ -5,7 +5,7 @@ from django.core.urlresolvers import reverse
 
 # Paper imports
 from paper.models import Paper, Tag
-from paper.utils import get_page, get_main_page_context_dict
+from paper.utils.ui_utils import get_page, get_main_page_context_dict
 
 class PaperTest(TestCase):
     """
@@ -78,6 +78,13 @@ class PaperTest(TestCase):
         response = self.client.get(reverse('filter_by_tag', args=[self.test_tag_one.name]))
         self.assertEqual(response.status_code, 200)
         self.assertEqual(len(response.context['papers_page'].object_list), 2)
+
+    def test_storage_size(self):
+        """
+        Testing the view that returns the storage size of the papers stored
+        """
+        response = self.client.get(reverse('storage_size'))
+        self.assertEqual(response.status_code, 200)
 
 
     def test_utils(self):

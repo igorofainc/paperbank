@@ -3,7 +3,8 @@ from django.http import HttpResponse
 from django.core.urlresolvers import reverse
 
 from .models import Paper, Tag
-from .utils import get_page, get_main_page_context_dict
+from .utils.ui_utils import get_page, get_main_page_context_dict
+from .utils.paper_management_utils import get_storage_size
 
 
 # Create your views here.
@@ -66,3 +67,13 @@ def filter_by_tag(request, tag_name):
     context_dict['papers_page'] = get_page(results, page)
     context_dict.update(get_main_page_context_dict())
     return render(request, 'main_page.html', context_dict)
+
+
+def storage_size(request):
+    """
+    Returns the size of the files stored in megabytes,
+
+    TODO: This should be moved to a management app, or the dashboard 
+    """
+    return HttpResponse('The size is: %s mb' % get_storage_size(size='mb'))
+    
