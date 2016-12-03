@@ -7,13 +7,13 @@ Styles for the Landing page
 
 .app-description {
   margin-top: 7%;
-  margin-bottom: 25px;
+  margin-bottom: 40px;
   text-align: center;
 }
 
 .landing-app-logo {
   display: block;
-  width: 72px;
+  width: 85px;
   margin: auto;
 }
 
@@ -53,7 +53,7 @@ a.btn.btn-paper {
 
 .landing-page-search {
   margin: auto;
-  max-width: 90%;
+  max-width: 85%;
 }
 
 .landing-page-search .search-form { /* This will overwrite the styling in the main file because it is this file is include last*/

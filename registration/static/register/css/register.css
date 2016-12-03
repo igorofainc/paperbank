@@ -13,3 +13,8 @@
 .registration-description-text {
   font-size: 18px;
 }
+
+.registration p.help-block {
+  font-size: 12px;
+  color: #777;
+}

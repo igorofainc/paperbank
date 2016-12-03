@@ -19,7 +19,9 @@ def landing(request):
 def main(request):
     """
     This is the main page 
-    where the main user lands
+    It just lists the papers current in the database,
+  
+    TODO: Update to use list django generic views
     """
     context_dict = {}
     papers = Paper.objects.all().order_by('-created_date')
@@ -34,6 +36,8 @@ def search(request):
     """
     Searches through the papers and find
     the most appropriate 
+
+    TODO: Update to use django generic views
     """
     context_dict = {}
     question = request.GET.get('q', '')
@@ -48,6 +52,8 @@ def filter_by_tag(request, tag_name):
     """
     This filters through the papers basing
     on the given tag 
+  
+    TODO: Update to use django generic views
     """
     context_dict = {}
     tag = Tag.objects.filter(name=tag_name)
