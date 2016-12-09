@@ -34,15 +34,15 @@ body, h1 {
 
 /* some specific classes */
 .btn-paper {
-  color: white;
-  background: #AD1457;
-  border-color: #AD1457;
+  background: white;
+  color: #AD1457;
+  border: 2px solid #AD1457;
+  border-radius: 16px;
 }
 
 .btn-paper:hover {
-  color: white;
-  background: #B9165D;
-  border-color: #B9165D;
+  background: #f9f9f9;
+  color: #AD1457;
 }
 
 .page-item.active
