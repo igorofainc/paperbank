@@ -3,6 +3,9 @@
 {% load static from staticfiles %}
 
 {% block content %}
+   
+   {# Main page specific css #}
+   <link rel="stylesheet" href="{% static 'paper/css/main_page.css' %}">
 
    <div class="page-wrapper">
 
@@ -35,9 +38,9 @@
             </div>
         </div>
 
-        <div class="footer">
+        <footer>
           <p class="text-xs-center small text-muted">Our library now contains {{number_of_papers}} papers, share with us papers and ideas, and help us to help you ;).</p>
-        </div>
+        </footer>
 
 
     </div>

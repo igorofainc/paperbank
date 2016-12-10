@@ -22,9 +22,6 @@ body, h1 {
 }
 
 
-html {
-  border-top: 2px solid #A81354;
-}
 
 /* overriding bootstrap */
 .pagination>.active>a,
@@ -33,9 +30,7 @@ html {
 .pagination>.active>span,
 .pagination>.active>span:focus,
 .pagination>.active>span:hover {
-  background-color: #A81354;
-  border-color: #A81354;
-}
+  }
 
 /* some specific classes */
 .btn-paper {
@@ -50,14 +45,31 @@ html {
   color: #A81354;
 }
 
-.page-item.active
-.page-link,
-.page-item.active
-.page-link:focus,
-.page-item.active
-.page-link:hover {
-  background-color: #C73374;
-  border-color: #C73374;
+.page-item .page-link {
+  font-size: 0.9em; 
+  border: 0;
+}
+
+.page-item .page-link:hover {
+  background-color: #fff;
+  color: #A81354;
+}
+
+.page-item.active .page-link,
+.page-item.active .page-link:focus,
+.page-item.active .page-link:hover {
+  background-color: #fff;
+  color: #A81354;
+  font-size: 0.9em;
+
+}
+
+.page-item.active .page-link,
+.page-item.active .page-link:focus,
+.page-item.active .page-link:hover {
+  background-color: #fff; 
+  border-color: #fff;
+  color: #A81354;
 }
 
 .pagination>li>a,
@@ -66,7 +78,9 @@ html {
 }
 
 .paper-box-wrapper {
+  position: relative;
   max-width: 930px;
+  min-height: 75vh;
   margin: auto;
 }
 
@@ -121,7 +135,8 @@ ul.paper-container li.paper a.paper-name {
   padding: 10px 20px;
   color: #888;
   font-size: 0.9em;
-  width: 100%;
+  width: 100%; 
+  cursor: pointer;
 }
 
 ul.paper-container li.paper a.paper-name:hover {
@@ -148,6 +163,13 @@ span.paper-tags-container {
 a.paper-tag.small {
   padding: 12.5px 2px;
   color: #A81354;
+}
+
+
+footer {
+  position: absolute;
+  bottom: -20px;
+  width: 100%;
 }
 
 
