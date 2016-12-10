@@ -7,7 +7,7 @@
         <li class="paper row">
 
           <a href="{{paper.paper_file.url}}" class="paper-name col-xs-8">{{paper.name}}</a>
-          <span class="paper-tags-container col-xs-4">
+          <span class="paper-tags-container">
               {% for tag in paper.tags.all %}
                   <a href="{% url 'filter_by_tag' tag.name %}" class="paper-tag pull-right small">#{{tag.name}}</a>
               {% endfor %}

@@ -8,6 +8,7 @@ The design is mobile first and responsive and the breakpoints are:
 
 */
 
+
 @font-face {
   font-family: zwodrei;
   src: url('fonts/zwodrei.ttf');
@@ -21,6 +22,10 @@ body, h1 {
 }
 
 
+html {
+  border-top: 2px solid #A81354;
+}
+
 /* overriding bootstrap */
 .pagination>.active>a,
 .pagination>.active>a:focus,
@@ -28,21 +33,21 @@ body, h1 {
 .pagination>.active>span,
 .pagination>.active>span:focus,
 .pagination>.active>span:hover {
-  background-color: #AD1457;
-  border-color: #AD1457;
+  background-color: #A81354;
+  border-color: #A81354;
 }
 
 /* some specific classes */
 .btn-paper {
   background: white;
-  color: #AD1457;
-  border: 2px solid #AD1457;
+  color: #A81354;
+  border: 2px solid #A81354;
   border-radius: 16px;
 }
 
 .btn-paper:hover {
   background: #f9f9f9;
-  color: #AD1457;
+  color: #A81354;
 }
 
 .page-item.active
@@ -60,6 +65,11 @@ body, h1 {
   color: #C73374;
 }
 
+.paper-box-wrapper {
+  max-width: 930px;
+  margin: auto;
+}
+
 .text-center {
   text-align: center;
 }
@@ -72,94 +82,32 @@ body, h1 {
   margin: 0;
 }
 
-.section-container {
-  margin: auto;
-}
 
-.page-header {
-  margin: 0;
-  background: #f1f1f1;
-  padding: 5px 0;
-  border-bottom: 1px solid #e3e3e3;
-}
-
-
-.app-info {
-  display: table;
-  text-align: center;
-  margin: auto;
-}
 
 h1.app-name {
+  font-size: 25px;
+  padding: 7px 0;
   text-align: center;
   margin-bottom: 10px;
   font-family: zwodrei;
-  font-size: 30px;
-  color: #666;
+  color: #A81354;
 }
 
-img.app-logo {
-  width: 60px;
-}
 
-.search-form {
-  margin: auto;
-  position: relative;  /* Set children items position relative to this */
-}
 
 .search {
   height: 36px;
   padding: 0 8px;
   border-radius: 2px;
-  border: 2px solid #e3e3e3;
+  border: 0;
+  background: #f7f7f7;
   width: 100%;
-}
-
-.main-page-search {
-  margin-bottom: 20px;
-}
-
-.main-page-search .search-form {
-  max-width: 80%;
-  margin: auto;
 }
 
 
 .search:focus {
   outline: 0;
   outline-offset: 0;
-  border-color: #B1BCC3;
-}
-
-.go-btn-container {
-  position: absolute;
-  top: 1.5px;
-  right: 0;
-}
-
-.go-btn {
-  border-radius: 0;
-  position: relative;
-  color: white;
-  background-color: #970046;
-}
-
-.go-btn:hover,
-.go-btn:focus {
-  color: white;
-  background-color: #A22760;
-}
-
-.go-btn:active {
-  border: 0;
-  color: white;
-  background-color: #770A3D;
-}
-
-.go-btn:active:focus {
-  border: 0;
-  color: white;
-  background: #9A1745;
 }
 
 
@@ -171,76 +119,41 @@ ul.paper-container {
 ul.paper-container li.paper a.paper-name {
   display: block;
   padding: 10px 20px;
-  color: #555;
+  color: #888;
+  font-size: 0.9em;
+  width: 100%;
 }
 
 ul.paper-container li.paper a.paper-name:hover {
-  background: #f7f7f7;
   text-decoration: none;
+  background: #fcfcfc;
 }
 
 ul.paper-container li.paper.row {
+  position: relative;
   margin-right: 0;
   margin-left: 0;
-  border-bottom: 1px solid #e7e7e7;
-
+  border-bottom: 1px solid #f0f0f0;
 }
+
 
 span.paper-tags-container {
   text-align: right;
   line-height: 1.1;
+  position: absolute;
+  right: 0;
 }
+
 
 a.paper-tag.small {
   padding: 12.5px 2px;
+  color: #A81354;
 }
 
 
 
 /* Handling larger devices */
 @media (min-width: 768px) {
-
-  .app-info {
-    margin: 0;
-    width: 30%;
-    float: left;
-    padding: 0px 50px;
-  }
-
-  .search-form {
-    width: 70%;
-    float: right;
-    margin-bottom: 0;
-  }
-
-  .main-page-search {
-    margin-bottom: 0;
-  }
-
-  .main-page-search .search-form {
-    margin-top: 15px;
-    margin-bottom: 27px;
-  }
-
-
-  img.app-logo {
-    width: 58px;
-  }
-
-  h1.app-name {
-    font-size: 26px;
-  }
-  .search {
-    height: 40px;
-  }
-
-  .go-btn {
-    height: 40px;
-  }
-
-  .go-btn-container {
-    top: 0;
-  }
 
 
 }
@@ -249,41 +162,14 @@ a.paper-tag.small {
 /* For more large devices */
 @media (min-width: 1170px) {
 
-  img.app-logo {
-    width: 30%;
-    float: left;
-  }
-
-  h1.app-name {
-    width: 70%;
-    float: left;
-    text-align: left;
-    padding-top: 11%;
-  }
-
-  .app-info {
-  }
-
-  .main-page-search .search-form {
-    float: left;
-    max-width: 56%;
+  .paper-box-wrapper {
+    margin-top: 100px;
   }
 
 
   ul.paper-container {
-    max-width: 840px;
-    margin: auto;
-    box-shadow: 0 0 63px 25px #f9f9f9;
-  }
-
-  .page-header {
-    z-index: 50;
-    position: relative;
-  }
-
-  .header-section-container {
-    max-width: 1170px;
     margin: auto;
   }
+
 
 }

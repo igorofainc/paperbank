@@ -4,25 +4,23 @@
 
 {% block content %}
 
-     <div class="page-wrapper">
+   <div class="page-wrapper">
 
+     <div class="paper-box-wrapper">
+  
         <div class="page-header">
 
-            <div class="header-section-container">
+            <div class="row">
 
-                <div class="app-info marg-zero">
-
-                    <img src='{% static 'paper/img/logo.png' %}' alt='Paperbank Logo' class="app-logo" >
-                    <h1 class="app-name ">Paper Bank</h1>
-
+                <div class="col-md-2 app-info marg-zero">
+                    <h1 class="app-name ">Paperbank</h1>
                 </div>
 
                 {# Sorting papers form #}
-                <div class="main-page-search">
+                <div class="col-md-10 main-page-search">
                     {% include 'components/search.html' %}
                 </div>
 
-                <span class="clearfix"></span>
             </div>
 
         </div>
@@ -43,5 +41,6 @@
 
 
     </div>
+  </div>
 
 {% endblock %}
