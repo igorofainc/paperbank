@@ -1,0 +1,20 @@
+/*
+  This contains styles for the registration app.
+*/
+
+.registration {
+  max-width: 800px;
+}
+
+.registration-description-logo {
+  width: 120px; 
+}
+
+.registration-description-text {
+  font-size: 18px;
+}
+
+.registration p.help-block {
+  font-size: 12px;
+  color: #777;
+}

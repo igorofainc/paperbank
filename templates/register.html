@@ -7,9 +7,25 @@
 
 
 {% load bootstrap %}
+{% load static from staticfiles %}
 {% block content %}
 
-    <div class="container">
+    {# Including registration css #}
+    <link rel="stylesheet" href="{% static 'register/css/register.css' %}">
+
+    <div class="registration container">
+   
+        <div class="registration-description text-xs-center">
+            <img src="{% static 'paper/img/logo.png'  %}" class="registration-description-logo">
+
+            <div class="registration-description-text">
+                <p class="">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </p>
+            </div>
+
+        </div>
+        
         <form class="" method="post" role="form">
             {% csrf_token %}
             {{form|bootstrap}}

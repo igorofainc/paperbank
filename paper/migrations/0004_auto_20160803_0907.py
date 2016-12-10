@@ -3,7 +3,7 @@
 from __future__ import unicode_literals
 
 from django.db import migrations, models
-import paper.model_tools
+import paper.utils.model_utils
 
 
 class Migration(migrations.Migration):
@@ -21,6 +21,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='paper',
             name='paper_file',
-            field=models.FileField(upload_to=paper.model_tools.uploaded_paper_name),
+            field=models.FileField(upload_to=paper.utils.model_utils.uploaded_paper_name),
         ),
     ]
