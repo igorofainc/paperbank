@@ -58,20 +58,21 @@ body, h1 {
 .endless_page_link,
 .endless_page_link:focus,
 .endless_page_link:hover {
+  background-color: #fff; 
+  border-color: #fff;
+  color: #A08893;
+  font-size: 0.9em;
+}
+
+.endless_page_current strong,
+.endless_page_current:focus strong,
+.endless_page_current:hover strong {
   background-color: #fff;
   color: #A81354;
   font-size: 0.9em;
   text-decoration: none;
 }
 
-.endless_page_current strong,
-.endless_page_current:focus strong,
-.endless_page_current:hover strong {
-  background-color: #fff; 
-  border-color: #fff;
-  color: #A08893;
-  font-size: 0.9em;
-}
 
 
 .paper-box-wrapper {
