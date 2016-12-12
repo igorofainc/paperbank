@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.core.urlresolvers import reverse
 
 from .models import Paper, Tag
-from .utils.ui_utils import get_page, get_main_page_context_dict
+from .utils.ui_utils import get_main_page_context_dict
 from .utils.paper_management_utils import get_storage_size
 
 
@@ -26,9 +26,8 @@ def main(request):
     """
     context_dict = {}
     papers = Paper.objects.all().order_by('-created_date')
-    page = request.GET.get('page', 1)
 
-    context_dict['papers_page'] = get_page(papers, page)
+    context_dict['papers'] = Paper.objects.all()
     context_dict.update(get_main_page_context_dict())
     return render(request, 'main_page.html', context_dict)
 
@@ -45,7 +44,7 @@ def search(request):
     page = request.GET.get('page', 1)
 
     results = Paper.objects.filter(name__icontains=question).order_by('-created_date')
-    context_dict['papers_page'] = get_page(results, page)
+    context_dict['papers'] = results
     context_dict.update(get_main_page_context_dict())
     return render(request, 'main_page.html', context_dict)
 
@@ -58,13 +57,12 @@ def filter_by_tag(request, tag_name):
     """
     context_dict = {}
     tag = Tag.objects.filter(name=tag_name)
-    page = request.GET.get('page', 1)
 
     if not tag:
         return redirect(reverse('main_page'))
 
     results = Paper.objects.filter(tags=tag).order_by('-created_date')
-    context_dict['papers_page'] = get_page(results, page)
+    context_dict['papers'] = results
     context_dict.update(get_main_page_context_dict())
     return render(request, 'main_page.html', context_dict)
 

@@ -5,7 +5,7 @@ from django.core.urlresolvers import reverse
 
 # Paper imports
 from paper.models import Paper, Tag
-from paper.utils.ui_utils import get_page, get_main_page_context_dict
+from paper.utils.ui_utils import get_main_page_context_dict
 
 class PaperTest(TestCase):
     """
@@ -52,7 +52,7 @@ class PaperTest(TestCase):
         """
         response = self.client.get('/papers')
 	self.assertEqual(response.status_code, 200)
-        self.assertEqual(len(response.context['papers_page'].object_list), 2)
+        self.assertEqual(len(response.context['papers'], 2)
 
     def test_search(self):
         """ 
@@ -61,8 +61,7 @@ class PaperTest(TestCase):
         response = self.client.get('/search', {'q': 'another'})
         self.assertEqual(response.status_code, 200)
   
-        page = response.context['papers_page']
-        self.assertEqual(len(page.object_list), 1)
+        self.assertEqual(response.context['papers'], 1)
 
 
     def test_tag_filter(self):
@@ -77,7 +76,7 @@ class PaperTest(TestCase):
         # Testing with a valid tag
         response = self.client.get(reverse('filter_by_tag', args=[self.test_tag_one.name]))
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(len(response.context['papers_page'].object_list), 2)
+        self.assertEqual(response.context['papers'], 2)
 
     def test_storage_size(self):
         """
@@ -93,9 +92,6 @@ class PaperTest(TestCase):
         """
         # Testing the get_page function checking if no exceptions thrown
         papers = Paper.objects.all()
-        get_page(papers, 1) # Running with a valid integer
-        get_page(papers, 25) # Running with an empty page
-        get_page(papers, 's') # Running with an invalid page
 
         # Test get main page context dict
         context_dict = get_main_page_context_dict() 

@@ -49,27 +49,30 @@ body, h1 {
   color: #A81354;
 }
 
-.page-item.active .page-link,
-.page-item.active .page-link:focus,
-.page-item.active .page-link:hover {
+
+.pagination a,
+.pagination span {
+  padding: 0 7px;
+}
+
+.endless_page_link,
+.endless_page_link:focus,
+.endless_page_link:hover {
   background-color: #fff;
   color: #A81354;
   font-size: 0.9em;
   text-decoration: none;
 }
 
-.page-item.active .page-link,
-.page-item.active .page-link:focus,
-.page-item.active .page-link:hover {
+.endless_page_current strong,
+.endless_page_current:focus strong,
+.endless_page_current:hover strong {
   background-color: #fff; 
   border-color: #fff;
   color: #A08893;
+  font-size: 0.9em;
 }
 
-.pagination>li>a,
-.pagination>li>span {
-  color: #C73374;
-}
 
 .paper-box-wrapper {
   position: relative;
