@@ -1,12 +1,11 @@
-from django.test import TestCase, Client, override_settings
+from django.test import TestCase, Client
 from django.core.files.uploadedfile import SimpleUploadedFile
-from django.conf import settings
 from django.core.urlresolvers import reverse
 
 
 # Paper imports
 from paper.models import Paper, Tag
-from paper.utils import get_page, get_main_page_context_dict
+from paper.utils.ui_utils import get_page, get_main_page_context_dict
 
 class PaperTest(TestCase):
     """
@@ -80,15 +79,26 @@ class PaperTest(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(len(response.context['papers_page'].object_list), 2)
 
+    def test_storage_size(self):
+        """
+        Testing the view that returns the storage size of the papers stored
+        """
+        response = self.client.get(reverse('storage_size'))
+        self.assertEqual(response.status_code, 200)
+
 
     def test_utils(self):
         """
         Testing the paper utils
         """
-        # Testing the get_page function (just executing if no unexpected exceptions)
+        # Testing the get_page function checking if no exceptions thrown
         papers = Paper.objects.all()
-        get_page(papers, 1)
-        get_page(papers, 25)
-        get_page(papers, 's')
+        get_page(papers, 1) # Running with a valid integer
+        get_page(papers, 25) # Running with an empty page
+        get_page(papers, 's') # Running with an invalid page
+
+        # Test get main page context dict
+        context_dict = get_main_page_context_dict() 
+        self.assertEqual(context_dict['number_of_papers'], 2)
  
 

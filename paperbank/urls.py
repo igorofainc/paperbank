@@ -22,12 +22,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^registration', include('registration.urls')),
     url(r'^', include('paper.urls')),
 ]
 
-
-#urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
-"""
-Serving static files using the static function will only work in debug mode
-"""

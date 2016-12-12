@@ -13,56 +13,38 @@
     {% endblock %}
 
 
-    <div class="landing-page-wrapper">
+    <div class="landing-page-wrapper text-xs-center">
 
 
-        {# App Description Logo + app name #}
         <div class="container">
-            <div class="row">
-                <div class="app-description text-center">
-                    <img src="{% static 'paper/img/logo.png' %}"
-                                            class="landing-app-logo" alt="Paperbank logo">
-                    <h1 class="landing-app-name">Paper Bank</h1>
-                <div>
-            </div>
-        </div>
+ 
 
-        {# The search for the landing page #}
-        <div class="container">
-            <div class="row landing-page-search">
-               {% include 'components/search.html' %}
-            </div>
-        </div>
+           {# First row containing the paperbank drawing image #}
+           <div class="row">
+             <div class="img-description">
+                <img class="img-fluid app-drawing " src="{% static 'paper/img/paperbank_drawing.png' %}">
+             </div>
+           </div>
 
 
+           {# Second row, description about paperbank #}            
+           <div class="app-description">
+             <div class="text-description">
+                 <h2 class="landing-header landing-text">Revisions made easy, fun and effective than ever!</h2>
+                 <p class="landing-text">
+                     Paperbank is a Rwanda-based platform holding a collection of past papers, from national
+                     examinations to class tests and assignments for all academic levels to ease your revision
+                     journey, have fun!.
+                 </p>
 
-        {# App Extra Description plus app description drawing #}
-        <div class="container">
-            <div class="row">
-                <div class="general-app-description">
+                  <a class="btn btn-paper landing-papers-link "
+                        href="{% url 'main_page' %}">Get the papers</a>
+                 </div>
 
-
-
-                    <div class="img-description col-sm-5 push-sm-7">
-                        <img class="img-fluid app-drawing" src="{% static 'paper/img/paperbank_drawing.png' %}">
-                    </div>
-
-                    <div class="text-description col-sm-7 pull-sm-5">
-                        <h2 class="landing-header landing-text">Revisions made fun and easier than ever!</h2>
-                        <p class="landing-text">
-                            Paperbank is a Rwanda-based web platform holding a collection of past papers, from national
-                            examinations to class tests and assignments for all academic levels to ease your revision
-                            journey, have fun!.
-                        </p>
-
-                        <a class="btn btn-paper landing-papers-link "
-                         href="{% url 'main_page' %}">Get the papers</a>
-                    </div>
+             </div>
+           </div>
 
 
-
-                </div>
-            </div>
         </div>
 
 

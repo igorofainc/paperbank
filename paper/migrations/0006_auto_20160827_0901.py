@@ -21,7 +21,7 @@ def subject_to_tag(apps, schema_editor):
                 paper.tags.create(name=paper.subject.name)
                 paper.save()
         except IntegrityError:
-            tag = Tag.objects.filter(name=paper.subjects.name)
+            tag = Tag.objects.filter(name=paper.subject.name).first()
             paper.tags.add(tag)
             paper.save()
             print "Tag already exists"
@@ -84,12 +84,6 @@ class Migration(migrations.Migration):
 
 
 
-        migrations.RunPython(print_help_info, reverse_print_help_info),
-        migrations.RunPython(print_help_info, reverse_print_help_info),
-        migrations.RunPython(print_help_info, reverse_print_help_info),
-
-
-        migrations.RunPython(print_help_info, reverse_print_help_info),
 
         migrations.AlterField(
             model_name='paper', 
@@ -103,7 +97,6 @@ class Migration(migrations.Migration):
         ),
 
 	      
-        migrations.RunPython(print_help_info, reverse_print_help_info),
         
         migrations.DeleteModel(
             name='Subject',

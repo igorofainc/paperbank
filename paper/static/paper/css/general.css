@@ -1,0 +1,205 @@
+/*
+Styling for the paper bank application
+
+The design is mobile first and responsive and the breakpoints are:
+     @768px for middle sized devices
+     @1170px for wide sized devices
+
+
+*/
+
+
+@font-face {
+  font-family: zwodrei;
+  src: url('fonts/zwodrei.ttf');
+}
+
+
+body, h1 {
+  margin: 0;
+  padding: 0;
+  font-family: "Open Sans", sans-serif;
+}
+
+
+
+
+/* some specific classes */
+.btn-paper {
+  background: white;
+  color: #A81354;
+  border: 2px solid #A81354;
+  border-radius: 16px;
+}
+
+.btn-paper:hover,
+.btn-paper:focus,
+.btn-paper:active {
+  background: #f9f9f9;
+  color: #A81354;
+}
+
+.page-item .page-link {
+  font-size: 0.9em; 
+  border: 0;
+}
+
+.page-item .page-link:hover {
+  background-color: #fff;
+  color: #A81354;
+}
+
+.page-item.active .page-link,
+.page-item.active .page-link:focus,
+.page-item.active .page-link:hover {
+  background-color: #fff;
+  color: #A81354;
+  font-size: 0.9em;
+  text-decoration: none;
+}
+
+.page-item.active .page-link,
+.page-item.active .page-link:focus,
+.page-item.active .page-link:hover {
+  background-color: #fff; 
+  border-color: #fff;
+  color: #A08893;
+}
+
+.pagination>li>a,
+.pagination>li>span {
+  color: #C73374;
+}
+
+.paper-box-wrapper {
+  position: relative;
+  max-width: 930px;
+  min-height: 75vh;
+  margin: auto;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.pad-zero {
+  padding: 0;
+}
+
+.marg-zero {
+  margin: 0;
+}
+
+
+
+h1.app-name {
+  font-size: 23px;
+  padding: 7px 0;
+  text-align: center;
+  margin-top: 15px;
+  font-family: zwodrei;
+  color: #A81354;
+}
+
+
+
+.search {
+  font-size: 0.9em;
+  height: 36px;
+  padding: 0 8px;
+  border-radius: 2px;
+  border: 0;
+  background: #f7f7f7;
+  width: 100%;
+}
+
+.main-page-search {
+  margin-bottom: 15px;
+  margin: 0 15px;
+}
+
+
+.search:focus {
+  outline: 0;
+  outline-offset: 0;
+  background: #f2f2f2;
+}
+
+
+ul.paper-container {
+  padding: 0;
+  list-style-type: none;
+}
+
+ul.paper-container li.paper a.paper-name {
+  display: block;
+  padding: 10px 20px;
+  color: #888;
+  font-size: 0.9em;
+  width: 100%; 
+  cursor: pointer;
+}
+
+ul.paper-container li.paper a.paper-name:hover {
+  text-decoration: none;
+  background: #fcfcfc;
+}
+
+ul.paper-container li.paper.row {
+  position: relative;
+  margin-right: 0;
+  margin-left: 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+
+span.paper-tags-container {
+  text-align: right;
+  line-height: 1.1;
+  position: absolute;
+  right: 0;
+}
+
+
+a.paper-tag.small {
+  padding: 12.5px 2px;
+  color: #A81354;
+}
+
+
+footer {
+  position: absolute;
+  bottom: -35px;
+  width: 100%;
+}
+
+
+
+/* Handling larger devices */
+@media (min-width: 768px) {
+
+  h1.app-name {
+    margin-top: 0; 
+  }
+
+  .main-page-search {
+    margin: 0;
+  }
+ 
+}
+
+
+/* For more large devices */
+@media (min-width: 1170px) {
+
+  .paper-box-wrapper {
+    margin-top: 100px;
+  }
+
+
+  ul.paper-container {
+    margin: auto;
+  }
+
+
+}

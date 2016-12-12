@@ -3,7 +3,7 @@ Main utils for the paper app
 """
 from django.conf import settings
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-from .models import Paper
+from paper.models import Paper
 
 
 def get_page(papers, page):

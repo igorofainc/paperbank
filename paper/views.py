@@ -3,7 +3,8 @@ from django.http import HttpResponse
 from django.core.urlresolvers import reverse
 
 from .models import Paper, Tag
-from .utils import get_page, get_main_page_context_dict
+from .utils.ui_utils import get_page, get_main_page_context_dict
+from .utils.paper_management_utils import get_storage_size
 
 
 # Create your views here.
@@ -19,7 +20,9 @@ def landing(request):
 def main(request):
     """
     This is the main page 
-    where the main user lands
+    It just lists the papers current in the database,
+  
+    TODO: Update to use list django generic views
     """
     context_dict = {}
     papers = Paper.objects.all().order_by('-created_date')
@@ -34,6 +37,8 @@ def search(request):
     """
     Searches through the papers and find
     the most appropriate 
+
+    TODO: Update to use django generic views
     """
     context_dict = {}
     question = request.GET.get('q', '')
@@ -48,6 +53,8 @@ def filter_by_tag(request, tag_name):
     """
     This filters through the papers basing
     on the given tag 
+  
+    TODO: Update to use django generic views
     """
     context_dict = {}
     tag = Tag.objects.filter(name=tag_name)
@@ -60,3 +67,13 @@ def filter_by_tag(request, tag_name):
     context_dict['papers_page'] = get_page(results, page)
     context_dict.update(get_main_page_context_dict())
     return render(request, 'main_page.html', context_dict)
+
+
+def storage_size(request):
+    """
+    Returns the size of the files stored in megabytes,
+
+    TODO: This should be moved to a management app, or the dashboard 
+    """
+    return HttpResponse('The size is: %s mb' % get_storage_size(size='mb'))
+    

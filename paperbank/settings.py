@@ -57,7 +57,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'djangobower',
+    'bootstrapform',
     'paper',
+    'registration',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -163,7 +165,7 @@ BOWER_INSTALLED_APPS = (
 )
 
 # Paperbank configurations settings below
-PAPERS_PER_PAGE = 20  
+PAPERS_PER_PAGE = 10  
 
 
 """
