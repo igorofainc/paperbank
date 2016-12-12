@@ -52,7 +52,7 @@ class PaperTest(TestCase):
         """
         response = self.client.get('/papers')
 	self.assertEqual(response.status_code, 200)
-        self.assertEqual(len(response.context['papers'], 2)
+        self.assertEqual(len(response.context['papers']), 2)
 
     def test_search(self):
         """ 
@@ -61,7 +61,7 @@ class PaperTest(TestCase):
         response = self.client.get('/search', {'q': 'another'})
         self.assertEqual(response.status_code, 200)
   
-        self.assertEqual(response.context['papers'], 1)
+        self.assertEqual(len(response.context['papers']), 1)
 
 
     def test_tag_filter(self):
@@ -76,7 +76,7 @@ class PaperTest(TestCase):
         # Testing with a valid tag
         response = self.client.get(reverse('filter_by_tag', args=[self.test_tag_one.name]))
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.context['papers'], 2)
+        self.assertEqual(len(response.context['papers']), 2)
 
     def test_storage_size(self):
         """
