@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'djangobower',
     'bootstrapform',
+    'el_pagination',
     'paper',
     'registration',
 ]
@@ -167,6 +168,9 @@ BOWER_INSTALLED_APPS = (
 # Paperbank configurations settings below
 PAPERS_PER_PAGE = 10  
 
+
+from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS # pagination plugin requirements
+TEMPLATES[0]['OPTIONS']['context_processors'].insert(0, 'django.core.context_processors.request')
 
 """
 Below we try to get a local settings file, this is to be used during the development version
