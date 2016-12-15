@@ -1,9 +1,11 @@
 
 {# This is a template for dealing with the display of papers  #}
 
+{% load el_pagination_tags %}
 
 <ul class="paper-container">
-      {% for paper in papers_page %}
+   {% paginate papers %}
+      {% for paper in papers %}
         <li class="paper row">
 
           <a href="{{paper.paper_file.url}}" class="paper-name col-xs-8">{{paper.name}}</a>
@@ -15,41 +17,13 @@
 
         </li>
     {% endfor %}
-</ul>
-
-
-<div class="text-center">
-    <div class="pagination">
-        {% if papers_page.has_previous %}
-            <li class="page-item">
-                <a href="?page={{papers_page.previous_page_number}}" class="page-link">
-                    <span aria-hidden="true">&laquo;</span>
-                </a>
-            </li>
-        {% endif %}
-
-        {%  for page_number in papers_page.paginator.page_range %}
-
-            {% if papers_page.number == page_number %}
-                {% if papers_page.has_next or papers_page.has_previous %}
-                    <li class="page-item active">
-                        <a href="?page={{page_number}}" class="page-link">{{page_number}}</a>
-                    </li>
-                {% endif %}
-            {% else %}
-                <li class="page-item">
-                    <a href="?page={{page_number}}" class="page-link">{{page_number}}</a>
-                </li>
-            {% endif %}
-
-        {% endfor %}
-
-        {% if papers_page.has_next %}
-            <li class="page-item">
-                <a href="?page={{papers_page.next_page_number}}" class="page-link">
-                    <span aria-hidden="true">&raquo</span>
-                </a>
-            </li>
-        {% endif %}
+ 
+ 
+    {# Showing the pagination links using the django el(endless) pagination plugin #}
+    <div class="text-center">
+        <div class="pagination">
+           {% show_pages %}
+        </div>
     </div>
-</div>
+
+</ul>

@@ -22,7 +22,9 @@
            {# First row containing the paperbank drawing image #}
            <div class="row">
              <div class="img-description">
-                <img class="img-fluid app-drawing " src="{% static 'paper/img/paperbank_drawing.png' %}">
+                <div class="app-drawing svg-container">
+                    {% include 'svg/paper_drawing.svg' %}
+                </div>
              </div>
            </div>
 

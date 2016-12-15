@@ -13,10 +13,8 @@ Styles for the Landing page
   height: 100vh;
 }
 
-.landing-page-wrapper .app-drawing {
-  width: 250px;
-  margin: auto;
-  margin-bottom: 5px;
+.landing-page-wrapper .app-drawing svg {
+  height: 120px;
 }
 
 .landing-page-wrapper .text-description {
