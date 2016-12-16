@@ -10,7 +10,6 @@ dj-database-url==0.4.1
 django-bootstrap-form==3.2.1
 django-bower==5.1.0
 django-el-pagination==3.0.1
-django-rednoise==1.0.5
 django-storages==1.4.1
 gunicorn==19.6.0
 ipython==4.2.1
@@ -27,5 +26,4 @@ rollbar==0.13.2
 simplegeneric==0.8.1
 six==1.10.0
 traitlets==4.2.2
-whitenoise==1.0.6
 wsgiref==0.1.2
