@@ -74,4 +74,10 @@ def storage_size(request):
     TODO: This should be moved to a management app, or the dashboard 
     """
     return HttpResponse('The size is: %s mb' % get_storage_size(size='mb'))
-    
+ 
+
+def login(request):
+    """
+    Allowing the login of a user
+    """
+    return render(request, 'login.html', {})   
