@@ -80,4 +80,5 @@ def login(request):
     """
     Allowing the login of a user
     """
+    print "The user is: %s" % request.user
     return render(request, 'login.html', {})   
