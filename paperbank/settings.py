@@ -56,11 +56,18 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     'djangobower',
     'bootstrapform',
     'el_pagination',
     'paper',
     'registration',
+
+    #all auth
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.facebook',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -88,6 +95,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.request',
             ],
         },
     },
@@ -124,6 +132,19 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+
+AUTHENTICATION_BACKENDS = (
+    # Needed to login in django admin regardless of django-allauth
+    "django.contrib.auth.backends.ModelBackend",
+    #'allauth' specific authentication methods such as email
+    "allauth.account.auth_backends.AuthenticationBackend",
+)
+
+
+LOGIN_REDIRECT_URL = '/papers'
+
+SITE_ID = 1
 
 
 # Internationalization
@@ -196,11 +217,8 @@ if not DEBUG:
 
 
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-
     ALLOWED_HOSTS = ['*']
-
     DEBUG = False
-
 
 
     INSTALLED_APPS += ('storages',)

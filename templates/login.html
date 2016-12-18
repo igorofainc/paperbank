@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+   {% load socialaccount %}
+   {% load account %}
+ 
+ 
+   <div class="login-container">   
+       <a href="{% provider_login_url 'facebook' %}">Facebook</a>
+   </div>
+
+
+
+{% endblock %}

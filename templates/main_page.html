@@ -7,7 +7,14 @@
    {# Main page specific css #}
    <link rel="stylesheet" href="{% static 'paper/css/main_page.css' %}">
 
+   
+
    <div class="page-wrapper">
+     {% if user %}
+        <div class="small-navbar">
+            <a href="#" class="float-xs-right">{{user.username}}</a>
+        </div>
+     {% endif %}
 
      <div class="paper-box-wrapper">
   
