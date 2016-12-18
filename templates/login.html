@@ -5,9 +5,10 @@
    {% load socialaccount %}
    {% load account %}
  
-   <h2>Logged in as {% user_display user %} {{user.username}} </h2>
-    
-   <a href="{% provider_login_url 'facebook' %}">Facebook</a>
+ 
+   <div class="login-container">   
+       <a href="{% provider_login_url 'facebook' %}">Facebook</a>
+   </div>
 
 
 

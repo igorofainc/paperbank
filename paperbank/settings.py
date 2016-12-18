@@ -141,6 +141,9 @@ AUTHENTICATION_BACKENDS = (
     "allauth.account.auth_backends.AuthenticationBackend",
 )
 
+
+LOGIN_REDIRECT_URL = '/papers'
+
 SITE_ID = 1
 
 
@@ -214,11 +217,8 @@ if not DEBUG:
 
 
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-
     ALLOWED_HOSTS = ['*']
-
     DEBUG = False
-
 
 
     INSTALLED_APPS += ('storages',)
