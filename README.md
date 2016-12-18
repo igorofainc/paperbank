@@ -17,21 +17,21 @@ A working version of the library. can be found at www.paperbank.net
 ## Setting up development
 
 1. Start by cloning the repo
-'''bash
+'''sh
 $ git clone 
 '''
 
 2. Setup a virtualenv\
-'''bash
+'''sh
 $ virtualenv paperbank
 '''
 3. Install requirements
-'''bash
+'''sh
 $ pip install -r requirements.txt
 ''''
 
 4. Setup environment variables
-'''bash
+'''sh
 $ export paperbank_debug=True
 $ export paperbank_rollbar_key='secret'
 $ export paperbank_secret_key='secret'
