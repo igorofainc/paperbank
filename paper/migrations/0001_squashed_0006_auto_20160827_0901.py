@@ -83,18 +83,7 @@ class Migration(migrations.Migration):
                 ('paper_file', models.FileField(upload_to='uploads')),
             ],
         ),
-        migrations.CreateModel(
-            name='Subject',
-            fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=40)),
-            ],
-        ),
-        migrations.AddField(
-            model_name='paper',
-            name='subject',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='paper.Subject'),
-        ),
+       
         migrations.AlterField(
             model_name='paper',
             name='paper_file',
@@ -118,15 +107,5 @@ class Migration(migrations.Migration):
             name='tags',
             field=models.ManyToManyField(to=b'paper.Tag'),
         ),
-        migrations.RunPython(
-            code=subject_to_tag,
-            reverse_code=reverse_subject_to_tag,
-        ),
-        migrations.RemoveField(
-            model_name='paper',
-            name='subject',
-        ),
-        migrations.DeleteModel(
-            name='Subject',
-        ),
+
     ]
