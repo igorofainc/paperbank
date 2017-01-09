@@ -1,0 +1,6 @@
+localhost:2020
+proxy / localhost:8000 {
+    proxy_header Host {host} 
+    proxy_header X-Forwaded-Proto {scheme}
+    except /home/home/Dev/paperbank/static /home/home/Dev/paperbank/uploads/uploads
+}
