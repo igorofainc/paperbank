@@ -61,10 +61,6 @@ def reverse_subject_to_tag(apps, schema_editor):
 
 
 
-
-
-
-
 class Migration(migrations.Migration):
 
     replaces = [(b'paper', '0001_initial'), (b'paper', '0002_auto_20160803_0801'), (b'paper', '0003_auto_20160803_0819'), (b'paper', '0004_auto_20160803_0907'), (b'paper', '0005_paper_created_date'), (b'paper', '0006_auto_20160827_0901')]

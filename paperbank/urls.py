@@ -24,6 +24,8 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^registration', include('registration.urls')),
     url(r'^accounts/', include('allauth.urls')),
+    url(r'^bot/', include('bot.urls')),
+    url(r'^users/', include('users.urls')),
     url(r'^', include('paper.urls')),
 ]
 
