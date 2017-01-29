@@ -1,7 +1,10 @@
 from django.test import TestCase, Client
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.core.urlresolvers import reverse
+from django.contrib.sites.models import Site
 
+#allauth
+from allauth.socialaccount.models import SocialApp
 
 # Paper imports
 from paper.models import Paper, Tag
@@ -12,6 +15,8 @@ class PaperTest(TestCase):
     Test Cases for the paper
     app
     """
+    fixtures = ['allauth_test']
+
     def setUp(self):
         """
         Setting up the database
