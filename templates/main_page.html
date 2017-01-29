@@ -3,11 +3,11 @@
 {% load static from staticfiles %}
 
 {% block content %}
-   
+
    {# Main page specific css #}
    <link rel="stylesheet" href="{% static 'paper/css/main_page.css' %}">
 
-   
+
 
    <div class="page-wrapper">
      {% if user %}
@@ -17,7 +17,7 @@
      {% endif %}
 
      <div class="paper-box-wrapper">
-  
+
         <div class="page-header">
 
             <div class="row marg-zero">
@@ -31,10 +31,12 @@
                     {% include 'components/search.html' %}
                 </div>
 
+                <button type="button " class="upload-form-toggle btn btn-paper"
+                            data-toggle="modal" data-target="#upload-form-modal">Upload</button>
+
             </div>
 
         </div>
-
 
 
 
@@ -42,6 +44,24 @@
         <div class="papers-container">
             <div class="section-container">
                 {% include 'components/display_papers.html' %}
+            </div>
+        </div>
+
+        {# Upload Paper Form modal #}
+        <div class="modal fade" id="upload-form-modal">
+            <div class="modal-dialog">
+                <div class="modal-header">
+                    <h5 class="modal-title">Upload a Paper</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                      {{upload_form.as_p}}
+                    </form>
+                </div>
+                <div class="modal-footer"></div>
             </div>
         </div>
 
