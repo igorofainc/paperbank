@@ -1,3 +1,19 @@
 html {
   border-top: 2px solid #A81354;
 }
+
+.user-menu {
+  padding-top: 20px;
+  padding-right: 25px;
+}
+
+.user-menu .user-avatar {
+  width: 52px;
+  border-radius: 50%;
+  border: 2px solid #f0f0f0;
+}
+
+.user-menu .user-avatar:hover {
+  cursor: pointer;
+  border: 2px solid #fff;
+}

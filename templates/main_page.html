@@ -2,17 +2,53 @@
 
 {% load static from staticfiles %}
 
+
 {% block content %}
+
+
+    {# Testing social authentication #}
+    {% load socialaccount %}
+    {% providers_media_js %}
 
    {# Main page specific css #}
    <link rel="stylesheet" href="{% static 'paper/css/main_page.css' %}">
 
 
+   {# Upload Paper Form modal #}
+   <div class="modal fade" id="upload-form-modal">
+       <div class="modal-dialog">
+           <div class="modal-content">
+               <div class="modal-header">
+                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                       <span aria-hidden="true">&times;</span>
+                   </button>
+               </div>
+               <div class="modal-body">
+                   <form>
+                     {{upload_form.as_p}}
+                   </form>
+               </div>
+               <div class="modal-footer"></div>
+           </div>
+       </div>
+   </div>
+
+
+
+
+
 
    <div class="page-wrapper">
-     {% if user %}
-        <div class="small-navbar">
-            <a href="#" class="float-xs-right">{{user.username}}</a>
+     {% if not user.is_anonymous %}
+        <div class="small-navbar user-menu">
+            <div class="dropdown pull-xs-right">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <img src="{{ user.socialaccount_set.all.0.get_avatar_url }}" class="user-avatar"/>
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="{% url 'sign_out' %}">Logout</a>
+                </div>
+            </div>
         </div>
      {% endif %}
 
@@ -27,13 +63,17 @@
                 </div>
 
                 {# Sorting papers form #}
-                <div class="col-md-10 main-page-search">
+                <div class="col-md-8 main-page-search">
                     {% include 'components/search.html' %}
                 </div>
 
-                <button type="button " class="upload-form-toggle btn btn-paper"
+                {% if user.is_anonymous %}
+                <a class="btn btn-paper landing-papers-link "
+                      href="{% provider_login_url 'facebook' method='js_sdk' %}">Login with fb</a>
+                {% else %}
+                <button type="button " class="upload-form-toggle btn btn-paper col-md-2"
                             data-toggle="modal" data-target="#upload-form-modal">Upload</button>
-
+                {% endif %}
             </div>
 
         </div>
@@ -47,23 +87,7 @@
             </div>
         </div>
 
-        {# Upload Paper Form modal #}
-        <div class="modal fade" id="upload-form-modal">
-            <div class="modal-dialog">
-                <div class="modal-header">
-                    <h5 class="modal-title">Upload a Paper</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                      {{upload_form.as_p}}
-                    </form>
-                </div>
-                <div class="modal-footer"></div>
-            </div>
-        </div>
+
 
         <footer>
           <p class="text-xs-center small text-muted">Our library now contains {{number_of_papers}} papers, share with us papers and ideas, and help us to help you ;).</p>
