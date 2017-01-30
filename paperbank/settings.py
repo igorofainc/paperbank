@@ -62,6 +62,8 @@ INSTALLED_APPS = [
     'el_pagination',
     'paper',
     'registration',
+    'bot',
+    'users',
 
     #all auth
     'allauth',

@@ -14,15 +14,14 @@ def landing(request):
     visiting the application.
     Just rendering the page.
     """
+    print "The user is: %s" % request.user
     return render(request, 'landing_page.html')
 
 
 def main(request):
     """
-    This is the main page 
-    It just lists the papers current in the database,
-  
-    TODO: Update to use list django generic views
+    Main page 
+    Lists the papers current in the database,
     """
     context_dict = {}
     papers = Paper.objects.all().order_by('-created_date')
@@ -36,8 +35,6 @@ def search(request):
     """
     Searches through the papers and find
     the most appropriate 
-
-    TODO: Update to use django generic views
     """
     context_dict = {}
     question = request.GET.get('q', '')
@@ -52,8 +49,6 @@ def filter_by_tag(request, tag_name):
     """
     This filters through the papers basing
     on the given tag 
-  
-    TODO: Update to use django generic views
     """
     context_dict = {}
     tag = Tag.objects.filter(name=tag_name)
@@ -76,9 +71,3 @@ def storage_size(request):
     return HttpResponse('The size is: %s mb' % get_storage_size(size='mb'))
  
 
-def login(request):
-    """
-    Allowing the login of a user
-    """
-    print "The user is: %s" % request.user
-    return render(request, 'login.html', {})   

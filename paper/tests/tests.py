@@ -1,7 +1,11 @@
 from django.test import TestCase, Client
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.core.urlresolvers import reverse
+from django.contrib.sites.models import Site
+from django.test import override_settings
 
+#allauth
+from allauth.socialaccount.models import SocialApp
 
 # Paper imports
 from paper.models import Paper, Tag
@@ -12,6 +16,8 @@ class PaperTest(TestCase):
     Test Cases for the paper
     app
     """
+    fixtures = ['allauth_test']
+
     def setUp(self):
         """
         Setting up the database
@@ -37,6 +43,16 @@ class PaperTest(TestCase):
         Testing the creation of papers
         """
         self.assertEqual(Paper.objects.all().count(), 2)
+
+
+    @override_settings(DEBUG=False)
+    def test_settings_prod(self):
+        """
+        Running the production settings.
+        """
+        from django.conf import settings
+        print "running settings with debug False"
+        
 
 
     def test_landing_page(self):
@@ -96,5 +112,6 @@ class PaperTest(TestCase):
         # Test get main page context dict
         context_dict = get_main_page_context_dict() 
         self.assertEqual(context_dict['number_of_papers'], 2)
+        self.assertIn('upload_form', context_dict)
  
 

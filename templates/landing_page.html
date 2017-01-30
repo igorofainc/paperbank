@@ -11,13 +11,17 @@
         <link rel="stylesheet" href="{% static 'paper/css/landing_page.css' %}">
 
     {% endblock %}
+    
+    {# Testing social authentication #}
+    {% load socialaccount %}
+    {% providers_media_js %}
 
 
     <div class="landing-page-wrapper text-xs-center">
 
 
         <div class="container">
- 
+
 
            {# First row containing the paperbank drawing image #}
            <div class="row">
@@ -29,7 +33,7 @@
            </div>
 
 
-           {# Second row, description about paperbank #}            
+           {# Second row, description about paperbank #}
            <div class="app-description">
              <div class="text-description">
                  <h2 class="landing-header landing-text">Making revisions easy, fun and effective than ever!</h2>
@@ -41,6 +45,11 @@
 
                   <a class="btn btn-paper landing-papers-link "
                         href="{% url 'main_page' %}">Get the papers</a>
+
+                  {# Login with facebook link #}
+                  <a class="btn btn-paper landing-papers-link "
+                        href="{% provider_login_url 'facebook' method='js_sdk' %}">Login with Facebook</a>
+
                  </div>
 
              </div>

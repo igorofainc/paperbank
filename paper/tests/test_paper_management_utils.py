@@ -32,7 +32,9 @@ class PaperManagementUtilsTestCase(TestCase):
         # Just executing to see if there is no exceptions in the code
         size = get_storage_size(size='mb')
         size = get_storage_size(size='kb')
-        size = get_storage_size(size='gb')
+        size = get_storage_size(size='gb') 
+        with self.assertRaises(Exception):
+            get_storage_size('unknown_size')
          
         # invalidsize just in case
         # self.assertRaises(get_storage_size(size='invalid'), Exception)
