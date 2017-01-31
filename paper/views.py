@@ -17,7 +17,6 @@ def landing(request):
     visiting the application.
     Just rendering the page.
     """
-    print "The user is: %s" % request.user
     return render(request, 'landing_page.html')
 
 
@@ -78,7 +77,7 @@ def upload_paper(request):
         paper_form.save()
         return redirect(reverse('main_page'))
 
-    return HttpResponse("Invalid form");
+    return HttpResponse("Invalid Form", status=400) # bad request 
     
 
 
