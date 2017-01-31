@@ -70,6 +70,7 @@ class PaperTest(TestCase):
 	self.assertEqual(response.status_code, 200)
         self.assertEqual(len(response.context['papers']), 2)
 
+
     def test_search(self):
         """ 
         Testing the searching of the papers

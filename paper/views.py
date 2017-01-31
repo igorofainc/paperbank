@@ -1,8 +1,11 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.core.urlresolvers import reverse
+from django.contrib.auth.decorators import login_required
+from django.views.decorators.http import require_POST
 
 from .models import Paper, Tag
+from .forms import PaperForm
 from .utils.ui_utils import get_main_page_context_dict
 from .utils.paper_management_utils import get_storage_size
 
@@ -60,6 +63,23 @@ def filter_by_tag(request, tag_name):
     context_dict['papers'] = results
     context_dict.update(get_main_page_context_dict())
     return render(request, 'main_page.html', context_dict)
+
+
+
+@login_required
+@require_POST
+def upload_paper(request):
+    """
+    This view allow users to upload paper files, 
+    """
+    paper_form = PaperForm(request.POST, request.FILES)
+    
+    if paper_form.is_valid():
+        paper_form.save()
+        return redirect(reverse('main_page'))
+
+    return HttpResponse("Invalid form");
+    
 
 
 def storage_size(request):
