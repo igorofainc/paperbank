@@ -106,12 +106,22 @@ class PaperTest(TestCase):
         data = {
             'name': 'testpaper',
             'paper_file': SimpleUploadedFile(name='test_file', content='test', content_type='application/pdf'), 
-            'tags': ['1'], #tag with id 1
+            'tags': 'maths, testing'
         }
  
         self.client.login(username='test_user', password='test.test.test')
+       
+        # Testing if the page behaves correctly
         response = self.client.post(reverse('upload_paper'), data)
         self.assertRedirects(response, reverse('main_page'))
+  
+        # Testing if the paper and the tags are saved correctly
+        paper = Paper.objects.last()
+        self.assertEqual(paper.name, 'testpaper') 
+        tags = paper.tags.all()
+        tags_list = [tags[0].name, tags[1].name]
+        self.assertListEqual(tags_list, ['maths', 'testing'])
+         
 
     def test_storage_size(self):
         """

@@ -8,4 +8,4 @@ class PaperForm(ModelForm):
     """
     class Meta:
        model = Paper
-       exclude = ('created_date',)
+       exclude = ('created_date', 'tags')
