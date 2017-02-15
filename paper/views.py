@@ -28,7 +28,7 @@ def main(request):
     context_dict = {}
     papers = Paper.objects.all().order_by('-created_date')
 
-    context_dict['papers'] = Paper.objects.all()
+    context_dict['papers'] = papers
     context_dict.update(get_main_page_context_dict())
     return render(request, 'main_page.html', context_dict)
 
