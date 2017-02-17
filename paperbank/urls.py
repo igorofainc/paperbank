@@ -27,5 +27,4 @@ urlpatterns = [
     url(r'^bot/', include('bot.urls')),
     url(r'^users/', include('users.urls')),
     url(r'^', include('paper.urls')),
-]
-
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,0 +1,26 @@
+
+{# Upload Paper Form modal Component #}
+<div class="modal fade" id="upload-form-modal">
+    <div class="modal-dialog">
+
+        {# The form #}
+        <form method="POST" enctype="multipart/form-data" action="{% url 'upload_paper' %}">
+            <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                  {% csrf_token %}
+                  {{upload_form.as_p}}
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-paper" type="submit">Submit</button>
+            </div>
+        </div>
+        </form>
+
+
+    </div>
+</div>

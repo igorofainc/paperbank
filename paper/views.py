@@ -1,10 +1,14 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.core.urlresolvers import reverse
+from django.contrib.auth.decorators import login_required
+from django.views.decorators.http import require_POST
 
 from .models import Paper, Tag
+from .forms import PaperForm
 from .utils.ui_utils import get_main_page_context_dict
 from .utils.paper_management_utils import get_storage_size
+from .utils.paper_upload_utils import get_tags_from_string
 
 
 # Create your views here.
@@ -14,7 +18,6 @@ def landing(request):
     visiting the application.
     Just rendering the page.
     """
-    print "The user is: %s" % request.user
     return render(request, 'landing_page.html')
 
 
@@ -26,7 +29,7 @@ def main(request):
     context_dict = {}
     papers = Paper.objects.all().order_by('-created_date')
 
-    context_dict['papers'] = Paper.objects.all()
+    context_dict['papers'] = papers
     context_dict.update(get_main_page_context_dict())
     return render(request, 'main_page.html', context_dict)
 
@@ -60,6 +63,30 @@ def filter_by_tag(request, tag_name):
     context_dict['papers'] = results
     context_dict.update(get_main_page_context_dict())
     return render(request, 'main_page.html', context_dict)
+
+
+
+@login_required
+@require_POST
+def upload_paper(request):
+    """
+    This view allow users to upload paper files, 
+    """
+    paper_form = PaperForm(request.POST, request.FILES)
+    
+    if paper_form.is_valid():
+        paper =  paper_form.save()
+         
+        # assigning tags to the paper
+        tags = get_tags_from_string(paper_form.cleaned_data['tags'])
+        for tag in tags:
+            paper.tags.add(tag)
+        paper.save()
+
+        return redirect(reverse('main_page'))
+
+    return HttpResponse("Invalid Form", status=400) # bad request 
+    
 
 
 def storage_size(request):

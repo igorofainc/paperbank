@@ -2,6 +2,7 @@ from django.test import TestCase, Client
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.core.urlresolvers import reverse
 from django.contrib.sites.models import Site
+from django.contrib.auth.models import User
 from django.test import override_settings
 
 #allauth
@@ -23,6 +24,8 @@ class PaperTest(TestCase):
         Setting up the database
         """
         self.client = Client()
+
+        self.test_user = User.objects.create_user(username='test_user', email='test@paperbank.net', password='test.test.test')
 
         self.test_file = SimpleUploadedFile(name='test_file.pdf',
                                             content='testing file', content_type='application/pdf')
@@ -70,6 +73,7 @@ class PaperTest(TestCase):
 	self.assertEqual(response.status_code, 200)
         self.assertEqual(len(response.context['papers']), 2)
 
+
     def test_search(self):
         """ 
         Testing the searching of the papers
@@ -93,6 +97,31 @@ class PaperTest(TestCase):
         response = self.client.get(reverse('filter_by_tag', args=[self.test_tag_one.name]))
         self.assertEqual(response.status_code, 200)
         self.assertEqual(len(response.context['papers']), 2)
+
+
+    def test_upload(self):
+        """
+        Tests the file upload process
+        """
+        data = {
+            'name': 'testpaper',
+            'paper_file': SimpleUploadedFile(name='test_file', content='test', content_type='application/pdf'), 
+            'tags': 'maths, testing'
+        }
+ 
+        self.client.login(username='test_user', password='test.test.test')
+       
+        # Testing if the page behaves correctly
+        response = self.client.post(reverse('upload_paper'), data)
+        self.assertRedirects(response, reverse('main_page'))
+  
+        # Testing if the paper and the tags are saved correctly
+        paper = Paper.objects.last()
+        self.assertEqual(paper.name, 'testpaper') 
+        tags = paper.tags.all()
+        tags_list = [tags[0].name, tags[1].name]
+        self.assertListEqual(tags_list, ['maths', 'testing'])
+         
 
     def test_storage_size(self):
         """

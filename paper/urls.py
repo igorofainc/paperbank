@@ -8,6 +8,7 @@ urlpatterns = [
     url(r'^papers$', views.main, name='main_page'),
     url(r'^tag/([\w ]+)$', views.filter_by_tag, name='filter_by_tag'),
     url(r'^search', views.search, name='search'),
+    url(r'^paper_upload', views.upload_paper, name='upload_paper'),
     url(r'^storage-size', views.storage_size, name='storage_size'),
 ]
 
