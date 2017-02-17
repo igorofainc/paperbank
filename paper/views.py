@@ -8,6 +8,7 @@ from .models import Paper, Tag
 from .forms import PaperForm
 from .utils.ui_utils import get_main_page_context_dict
 from .utils.paper_management_utils import get_storage_size
+from .utils.paper_upload_utils import get_tags_from_string
 
 
 # Create your views here.
@@ -74,7 +75,14 @@ def upload_paper(request):
     paper_form = PaperForm(request.POST, request.FILES)
     
     if paper_form.is_valid():
-        paper_form.save()
+        paper =  paper_form.save()
+         
+        # assigning tags to the paper
+        tags = get_tags_from_string(paper_form.cleaned_data['tags'])
+        for tag in tags:
+            paper.tags.add(tag)
+        paper.save()
+
         return redirect(reverse('main_page'))
 
     return HttpResponse("Invalid Form", status=400) # bad request 
