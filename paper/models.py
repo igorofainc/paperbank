@@ -2,7 +2,8 @@ from __future__ import unicode_literals
 from django.db import models
 
 
-from .utils.model_utils import uploaded_paper_name 
+from .utils.model_utils import uploaded_paper_name
+from .validators import validate_paper_file
 
 # Create your models here.
 
@@ -11,7 +12,7 @@ class Tag(models.Model):
     To be used as a way to filter through papers
     papers can have many tags or hashtags
     """
-    name = models.CharField(max_length=40, unique=True  )
+    name = models.CharField(max_length=40, unique=True)
 
     def __str__(self):
         return '#' + self.name
@@ -24,7 +25,7 @@ class Paper(models.Model):
     hold the uploaded papers
     """
     name = models.CharField(max_length=50)
-    paper_file = models.FileField(upload_to=uploaded_paper_name)
+    paper_file = models.FileField(upload_to=uploaded_paper_name, validators=[validate_paper_file])
     created_date = models.DateTimeField(auto_now=True) 
         
     tags = models.ManyToManyField(Tag)
