@@ -1,28 +1,28 @@
+from django import forms
 from django.test import TestCase, Client
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.core.urlresolvers import reverse
-from django.contrib.sites.models import Site
 from django.contrib.auth.models import User
 from django.test import override_settings
-
-#allauth
-from allauth.socialaccount.models import SocialApp
 
 # Paper imports
 from paper.models import Paper, Tag
 from paper.utils.ui_utils import get_main_page_context_dict
 
+
 class PaperTest(TestCase):
+
     """
     Test Cases for the paper
     app
     """
+
     fixtures = ['allauth_test']
 
     def setUp(self):
         """
-        Setting up the database
-        """
+		Setting up the database
+		"""
         self.client = Client()
 
         self.test_user = User.objects.create_user(username='test_user', email='test@paperbank.net', password='test.test.test')
@@ -33,11 +33,11 @@ class PaperTest(TestCase):
         self.paper = Paper.objects.create(name="test_paper", paper_file=self.test_file)
         self.test_tag_one = self.paper.tags.create(name='test')
         self.test_tag_two = self.paper.tags.create(name='another_one')
-        
+
 
         self.another_paper = Paper.objects.create(name='another_paper.pdf',  paper_file=self.test_file)
         self.another_paper.tags.add(self.test_tag_one)
-        
+
         print self.paper
         print self.test_tag_one
 
@@ -53,9 +53,8 @@ class PaperTest(TestCase):
         """
         Running the production settings.
         """
-        from django.conf import settings
         print "running settings with debug False"
-        
+
 
 
     def test_landing_page(self):
@@ -66,16 +65,16 @@ class PaperTest(TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_main_page(self):
-	"""
-	Testing the main page for the paper app
+        """
+        Testing the main page for the paper app
         """
         response = self.client.get('/papers')
-	self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
         self.assertEqual(len(response.context['papers']), 2)
 
 
     def test_search(self):
-        """ 
+        """
         Testing the searching of the papers
         """
         response = self.client.get('/search', {'q': 'another'})
@@ -86,8 +85,8 @@ class PaperTest(TestCase):
 
     def test_tag_filter(self):
         """
-        Testing the filtering of papers with 
-        tags 
+        Testing the filtering of papers with
+        tags
         """
         # Testing with an invalid tag, response should be a redirect to the main page
         response = self.client.get(reverse('filter_by_tag', args=['none']))
@@ -100,28 +99,40 @@ class PaperTest(TestCase):
 
 
     def test_upload(self):
-        """
+        """"
         Tests the file upload process
         """
+        self.client.login(username='test_user', password='test.test.test')
+
+        # Testing with a file that is not a pdf
         data = {
             'name': 'testpaper',
-            'paper_file': SimpleUploadedFile(name='test_file', content='test', content_type='application/pdf'), 
+            'paper_file': SimpleUploadedFile(name='test_file.txt', content='test', content_type='text/html'),
+            'paper_file': SimpleUploadedFile(name='test_file.txt', content='test', content_type='text/html'),
+            'tags': 'maths, testing',
+        }
+
+
+        response = self.client.post(reverse('upload_paper'), data)
+        self.assertEqual(response.status_code, 400)
+
+        # Testing with a pdf file
+        data = {
+            'name': 'testpaper',
+            'paper_file': SimpleUploadedFile(name='test_file.pdf', content='test', content_type='application/pdf'),
             'tags': 'maths, testing'
         }
- 
-        self.client.login(username='test_user', password='test.test.test')
-       
-        # Testing if the page behaves correctly
+
         response = self.client.post(reverse('upload_paper'), data)
         self.assertRedirects(response, reverse('main_page'))
-  
+
         # Testing if the paper and the tags are saved correctly
         paper = Paper.objects.last()
-        self.assertEqual(paper.name, 'testpaper') 
+        self.assertEqual(paper.name, 'testpaper')
         tags = paper.tags.all()
         tags_list = [tags[0].name, tags[1].name]
         self.assertListEqual(tags_list, ['maths', 'testing'])
-         
+
 
     def test_storage_size(self):
         """
@@ -135,11 +146,8 @@ class PaperTest(TestCase):
         """
         Testing the paper utils
         """
-        # Testing the get_page function checking if no exceptions thrown
-        papers = Paper.objects.all()
-
         # Test get main page context dict
-        context_dict = get_main_page_context_dict() 
+        context_dict = get_main_page_context_dict()
         self.assertEqual(context_dict['number_of_papers'], 2)
         self.assertIn('upload_form', context_dict)
  
