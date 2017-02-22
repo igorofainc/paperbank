@@ -64,6 +64,8 @@ INSTALLED_APPS = [
     'registration',
     'bot',
     'users',
+    'api',
+    'rest_framework',
 
     #all auth
     'allauth',

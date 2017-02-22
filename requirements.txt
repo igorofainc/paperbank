@@ -30,3 +30,4 @@ sh==1.11
 simplegeneric==0.8.1
 six==1.10.0
 traitlets==4.2.2
+djangorestframework==3.5.4
