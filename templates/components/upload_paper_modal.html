@@ -13,7 +13,27 @@
             </div>
             <div class="modal-body">
                   {% csrf_token %}
-                  {{upload_form.as_p}}
+
+                  {# Name of the paper #}
+                  <div class="form-group">
+                      <label for="name">Name</label>
+                      <input type="text" class="form-control" id="name" name="name">
+                  </div>
+
+                  {# Paper file #}
+                  <div class="form-group"> 
+                      <label for="paper_file"> File</label>
+                      <input type="file" accept="application/pdf" id="paper_file" name="paper_file">
+                  </div>
+
+                  {# Tags #}
+                  <div class="form-group">
+                      <label for="tags">Tags</label>
+                      <input type="tags" class="form-control" id="tags" name="tags">
+                      <p class="small-text help-text">Separate tags with commas, ex: maths, mid-term</p>
+                  </div>
+ 
+                   
             </div>
             <div class="modal-footer">
                 <button class="btn btn-paper" type="submit">Submit</button>
