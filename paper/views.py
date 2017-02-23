@@ -73,14 +73,14 @@ def upload_paper(request):
     This view allow users to upload paper files, 
     """
     paper_form = PaperForm(request.POST, request.FILES)
-    
+ 
     if paper_form.is_valid():
         paper =  paper_form.save()
          
         # assigning tags to the paper
         tags = get_tags_from_string(paper_form.cleaned_data['tags'])
         for tag in tags:
-            paper.tags.add(tag)
+            paper.tags.add(tag.first())
         paper.save()
 
         return redirect(reverse('main_page'))
