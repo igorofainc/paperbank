@@ -7,7 +7,6 @@ from django.test import override_settings
 
 # Paper imports
 from paper.models import Paper, Tag
-from paper.utils.ui_utils import get_main_page_context_dict
 
 
 class PaperTest(TestCase):
@@ -99,13 +98,5 @@ class PaperTest(TestCase):
 
 
 
-
-    def test_utils(self):
-        """
-        Testing the paper utils
-        """
-        # Test get main page context dict
-        context_dict = get_main_page_context_dict()
-        self.assertEqual(context_dict['number_of_papers'], 2)
 
 

@@ -3,8 +3,6 @@ from django.core.urlresolvers import reverse
 
 
 from .models import Paper, Tag
-from .utils.ui_utils import get_main_page_context_dict
-
 
 
 # Create your views here.
@@ -26,7 +24,6 @@ def main(request):
     papers = Paper.objects.all().order_by('-created_date')
 
     context_dict['papers'] = papers
-    context_dict.update(get_main_page_context_dict())
     return render(request, 'main_page.html', context_dict)
 
 
@@ -41,7 +38,6 @@ def search(request):
 
     results = Paper.objects.filter(name__icontains=question).order_by('-created_date')
     context_dict['papers'] = results
-    context_dict.update(get_main_page_context_dict())
     return render(request, 'main_page.html', context_dict)
 
 def filter_by_tag(request, tag_name):
@@ -57,7 +53,6 @@ def filter_by_tag(request, tag_name):
 
     results = Paper.objects.filter(tags=tag).order_by('-created_date')
     context_dict['papers'] = results
-    context_dict.update(get_main_page_context_dict())
     return render(request, 'main_page.html', context_dict)
 
 
