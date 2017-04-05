@@ -6,31 +6,17 @@
 {% block content %}
 
 
-    {# Testing social authentication #}
-    {% load socialaccount %}
-    {% providers_media_js %}
+
 
    {# Main page specific css #}
    <link rel="stylesheet" href="{% static 'paper/css/main_page.css' %}">
 
 
 
-   {% include 'components/upload_paper_modal.html' %}
 
 
    <div class="page-wrapper">
-     {% if not user.is_anonymous %}
-        <div class="small-navbar user-menu">
-            <div class="dropdown pull-xs-right">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    <img src="{{ user.socialaccount_set.all.0.get_avatar_url }}" class="user-avatar"/>
-                </a>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" href="{% url 'sign_out' %}">Logout</a>
-                </div>
-            </div>
-        </div>
-     {% endif %}
+
 
      <div class="paper-box-wrapper">
 
@@ -43,17 +29,10 @@
                 </div>
 
                 {# Sorting papers form #}
-                <div class="col-md-8 main-page-search">
+                <div class="col-md-10 main-page-search">
                     {% include 'components/search.html' %}
                 </div>
 
-                {% if user.is_anonymous %}
-                <a class="btn btn-paper landing-papers-link "
-                      href="{% provider_login_url 'facebook' method='js_sdk' %}">Login with fb</a>
-                {% else %}
-                <button type="button " class="upload-form-toggle btn btn-paper col-md-2"
-                            data-toggle="modal" data-target="#upload-form-modal">Upload</button>
-                {% endif %}
             </div>
 
         </div>
