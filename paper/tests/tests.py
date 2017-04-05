@@ -107,6 +107,5 @@ class PaperTest(TestCase):
         # Test get main page context dict
         context_dict = get_main_page_context_dict()
         self.assertEqual(context_dict['number_of_papers'], 2)
-        self.assertIn('upload_form', context_dict)
- 
+
 
