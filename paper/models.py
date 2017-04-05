@@ -3,7 +3,6 @@ from django.db import models
 
 
 from .utils.model_utils import uploaded_paper_name
-from .validators import validate_paper_file
 
 # Create your models here.
 
@@ -25,7 +24,7 @@ class Paper(models.Model):
     hold the uploaded papers
     """
     name = models.CharField(max_length=50)
-    paper_file = models.FileField(upload_to=uploaded_paper_name, validators=[validate_paper_file])
+    paper_file = models.FileField(upload_to=uploaded_paper_name)
     created_date = models.DateTimeField(auto_now=True) 
         
     tags = models.ManyToManyField(Tag)

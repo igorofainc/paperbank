@@ -98,48 +98,6 @@ class PaperTest(TestCase):
         self.assertEqual(len(response.context['papers']), 2)
 
 
-    def test_upload(self):
-        """"
-        Tests the file upload process
-        """
-        self.client.login(username='test_user', password='test.test.test')
-
-        # Testing with a file that is not a pdf
-        data = {
-            'name': 'testpaper',
-            'paper_file': SimpleUploadedFile(name='test_file.txt', content='test', content_type='text/html'),
-            'paper_file': SimpleUploadedFile(name='test_file.txt', content='test', content_type='text/html'),
-            'tags': 'maths, testing',
-        }
-
-
-        response = self.client.post(reverse('upload_paper'), data)
-        self.assertEqual(response.status_code, 400)
-
-        # Testing with a pdf file
-        data = {
-            'name': 'testpaper',
-            'paper_file': SimpleUploadedFile(name='test_file.pdf', content='test', content_type='application/pdf'),
-            'tags': 'maths, testing'
-        }
-
-        response = self.client.post(reverse('upload_paper'), data)
-        self.assertRedirects(response, reverse('main_page'))
-
-        # Testing if the paper and the tags are saved correctly
-        paper = Paper.objects.last()
-        self.assertEqual(paper.name, 'testpaper')
-        tags = paper.tags.all()
-        tags_list = [tags[0].name, tags[1].name]
-        self.assertListEqual(tags_list, ['maths', 'testing'])
-
-
-    def test_storage_size(self):
-        """
-        Testing the view that returns the storage size of the papers stored
-        """
-        response = self.client.get(reverse('storage_size'))
-        self.assertEqual(response.status_code, 200)
 
 
     def test_utils(self):

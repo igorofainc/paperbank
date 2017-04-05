@@ -56,22 +56,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django.contrib.sites',
     'djangobower',
     'bootstrapform',
-    'el_pagination',
-    'paper',
-    'registration',
-    'bot',
-    'users',
-    'api',
     'rest_framework',
+    'el_pagination',
 
-    #all auth
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    'allauth.socialaccount.providers.facebook',
+    'paper',
+    'api',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -138,17 +129,6 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-AUTHENTICATION_BACKENDS = (
-    # Needed to login in django admin regardless of django-allauth
-    "django.contrib.auth.backends.ModelBackend",
-    #'allauth' specific authentication methods such as email
-    "allauth.account.auth_backends.AuthenticationBackend",
-)
-
-
-LOGIN_REDIRECT_URL = '/papers'
-
-SITE_ID = 1
 
 
 # Internationalization
