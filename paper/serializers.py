@@ -8,4 +8,4 @@ class PaperSerializer(serializers.ModelSerializer):
     """
     class Meta:
         model = Paper
-        fields = ('id', 'name')
+        fields = ('id', 'name', 'paper_file')
